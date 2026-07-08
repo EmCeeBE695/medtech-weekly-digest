@@ -5,78 +5,238 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medical Device Intelligence Digest — 2026-07-07</title>
 <style>
-  :root { color-scheme: light; }
-  body { font-family: -apple-system, Segoe UI, Helvetica, Arial, sans-serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.55; color: #1a1a1a; background: #fff; }
-  h1 { font-size: 1.6em; margin-bottom: 0; }
-  .subtitle { color: #666; margin-top: 4px; margin-bottom: 30px; }
-  h2 { border-bottom: 2px solid #eee; padding-bottom: 6px; margin-top: 36px; }
-  h3 { margin-bottom: 4px; }
-  .category { display: inline-block; background: #eef4ff; color: #2554c7; font-size: 0.78em; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px; }
-  .archive-link { font-size: 0.9em; }
-  footer { margin-top: 50px; color: #888; font-size: 0.85em; border-top: 1px solid #eee; padding-top: 15px; }
-  a { color: #2554c7; }
+  :root {
+    --teal: #0d9488; --teal-dark: #0f766e; --teal-faint: #f0fdfa;
+    --purple: #7c3aed; --purple-faint: #f5f3ff;
+    --blue: #2563eb; --blue-faint: #eff6ff;
+    --amber: #d97706; --amber-faint: #fffbeb;
+    --red: #dc2626; --red-faint: #fef2f2;
+    --slate: #0f172a; --slate-700: #334155; --slate-500: #64748b;
+    --slate-300: #cbd5e1; --slate-100: #f1f5f9; --slate-50: #f8fafc; --white: #fff;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--slate-100); color: var(--slate); margin:0; line-height: 1.55; }
+  header { background: var(--slate); color: #fff; padding: 16px 32px; display: flex; align-items: center; gap: 16px; }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+  .header-text .course { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-300); }
+  .header-text .suite { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .header-spacer { flex: 1; }
+  .header-badge { font-size: .7rem; font-weight: 700; padding: 4px 12px; background: var(--teal); color: #fff; border-radius: 999px; letter-spacing: .06em; text-transform: uppercase; }
+
+  .hero { background: linear-gradient(135deg, var(--slate) 0%, #1e3a5f 100%); color: #fff; padding: 56px 32px 48px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(13,148,136,.18) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(13,148,136,.12) 0%, transparent 60%); }
+  .hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
+  .hero-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #99f6e4; margin-bottom: 14px; }
+  .hero h1 { font-size: 2.3rem; font-weight: 900; line-height: 1.15; margin: 0 0 16px; color: #fff; }
+  .hero p { font-size: .95rem; color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 28px; }
+  .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .hero-tag { font-size: .75rem; font-weight: 600; padding: 5px 14px; border-radius: 999px; letter-spacing: .02em; border: 1px solid rgba(255,255,255,.25); }
+
+  .main { max-width: 900px; margin: 0 auto; padding: 40px 24px 60px; }
+  .section-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-500); margin: 40px 0 16px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content:''; flex:1; height:1px; background: var(--slate-300); }
+  .section-label:first-of-type { margin-top: 0; }
+
+  .glance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .glance-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 16px 18px; border-top: 3px solid var(--cat-color, var(--teal)); }
+  .glance-cat { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--cat-color, var(--teal)); margin-bottom: 8px; }
+  .glance-card ul { margin: 0; padding-left: 18px; font-size: .83rem; color: var(--slate-700); }
+  .glance-card li { margin-bottom: 6px; }
+  .glance-card a { color: var(--slate-700); text-decoration: none; }
+  .glance-card a:hover { color: var(--cat-color, var(--teal)); text-decoration: underline; }
+
+  .dev-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; border-top: 3px solid var(--cat-color, var(--teal)); scroll-margin-top: 20px; }
+  .dev-card h3 { margin: 0 0 8px; font-size: 1.1rem; font-weight: 800; }
+  .cat-pill { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .03em; padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; background: var(--cat-faint, var(--teal-faint)); color: var(--cat-color, var(--teal)); }
+  .dev-card p { font-size: .87rem; color: var(--slate-700); margin: 0 0 10px; }
+  .dev-card p:last-child { margin-bottom: 0; }
+  .dev-card p strong { color: var(--slate); }
+
+  .cat-newproducts { --cat-color: var(--teal); --cat-faint: var(--teal-faint); }
+  .cat-clinical     { --cat-color: var(--purple); --cat-faint: var(--purple-faint); }
+  .cat-tech         { --cat-color: var(--blue); --cat-faint: var(--blue-faint); }
+  .cat-regulatory   { --cat-color: var(--amber); --cat-faint: var(--amber-faint); }
+  .cat-market       { --cat-color: var(--red); --cat-faint: var(--red-faint); }
+
+  .trends { background: var(--white); border: 1px solid var(--slate-300); border-radius: 10px; padding: 22px 24px; display: flex; gap: 14px; }
+  .trends-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .trends p { font-size: .87rem; color: var(--slate-700); margin: 0 0 12px; }
+  .trends p:last-child { margin-bottom: 0; }
+
+  footer { text-align: center; padding: 24px; font-size: .78rem; color: var(--slate-500); border-top: 1px solid var(--slate-300); background: var(--white); margin-top: 20px; }
+  footer .archive-links a { color: var(--teal); text-decoration: none; margin: 0 4px; }
+  footer .archive-links a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) { .hero h1 { font-size: 1.7rem; } }
 </style>
 </head>
 <body>
-<h1>Medical Device Intelligence Digest</h1>
-<div class="subtitle">Week of 2026-07-07</div>
 
-<h2>Visby Medical's At-Home Flu + COVID PCR Test Clears FDA</h2>
-<div class="category">New Products/Approvals</div>
-<p><strong>Core Development:</strong> Visby Medical won FDA clearance (July 2) for its Flu and COVID-19 Test, the first at-home, multi-viral PCR test. It's a single-use, palm-sized cartridge that gives lab-quality results for COVID and flu A/B in about 30 minutes, no lab or clinician required.</p>
-<p><strong>Context & Impact:</strong> At-home rapid antigen tests are fast but not very accurate; PCR is accurate but usually means a lab and a days-long wait. Visby collapses that trade-off into a single consumer product. For patients, that means same-day antiviral treatment decisions (like Tamiflu or Paxlovid, which only work early) without a clinic visit. For the market, it's a shot at converting flu-season urgent care traffic into retail pharmacy sales.</p>
-<p><strong>Technical & Regulatory:</strong> Cleared via 510(k), and this is Visby's second OTC PCR product after its standalone COVID/flu single-tests, so the regulatory path was well-trodden. The main challenge ahead is manufacturing scale-up and retail distribution before this fall/winter respiratory season.</p>
+<header>
+  <div class="logo-wrap">
+    <svg viewBox="0 0 36 36" width="36" height="36" fill="none" aria-label="logo">
+      <rect width="36" height="36" rx="8" fill="#0d9488"/>
+      <path d="M5 18h5l3-7 5 14 4-10 3 3h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="header-text">
+      <div class="course">Weekly Briefing</div>
+      <div class="suite">Medical Device Intelligence</div>
+    </div>
+  </div>
+  <div class="header-spacer"></div>
+  <span class="header-badge">Week of Jul 7, 2026</span>
+</header>
 
-<h2>Neo Medical Launches "Instant MIS Access" Spine Platform in the US</h2>
-<div class="category">New Products/Approvals</div>
-<p><strong>Core Development:</strong> Neo Medical debuted its Instant MIS Access platform (July 6) for minimally invasive spine surgery, covering posterior thoracic, lumbar and sacral procedures.</p>
-<p><strong>Context & Impact:</strong> Minimally invasive spine surgery (smaller incisions, faster recovery) has been held back less by surgical technique and more by clunky, multi-vendor instrument sets and OR logistics. Neo Medical is explicitly targeting those "operational barriers" — the packaging, setup and access-tool friction that slows adoption even when surgeons want to go minimally invasive. If it works as billed, it lowers the barrier for more hospitals to offer MIS spine surgery instead of open procedures.</p>
-<p><strong>Technical & Regulatory:</strong> This is a US commercial launch, not a novel implant, so the near-term hurdle is surgeon training and hospital procurement rather than a new FDA review.</p>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Medical Device &amp; Health Tech</div>
+    <h1>This Week in Medical Devices</h1>
+    <p>The most significant device developments from the past 7 days — new approvals, clinical results, tech launches, regulatory moves, and market news, with the practical "why it matters" for each.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">3 New Products/Approvals</span>
+      <span class="hero-tag">1 Clinical Advance</span>
+      <span class="hero-tag">1 Tech Innovation</span>
+      <span class="hero-tag">2 Regulatory Updates</span>
+      <span class="hero-tag">1 Market Development</span>
+    </div>
+  </div>
+</div>
 
-<h2>CliniComp Wins Clearance for AI-Native PACS Viewer</h2>
-<div class="category">Tech Innovations</div>
-<p><strong>Core Development:</strong> CliniComp received FDA 510(k) clearance (July 7) for its PACS Viewer, classified as a Medical Image Management and Processing System (MIMPS), which folds diagnostic-quality imaging and AI tools directly into its "New Era" EHR.</p>
-<p><strong>Context & Impact:</strong> Most hospitals still bounce between a separate imaging viewer (PACS) and their EHR, with AI tools bolted on as yet another system. Baking image viewing and native AI into the EHR itself is a bet that radiologists and clinicians want one screen, not three. It's a small clearance individually, but it's part of a broader push (echoed by Philips and others this year) to consolidate imaging AI into core clinical workflow rather than standalone add-ons.</p>
-<p><strong>Technical & Regulatory:</strong> Cleared as a MIMPS under 510(k) — a well-established device category — with the "native AI" branding referring to CliniComp's own EHR-embedded tools rather than a new algorithm clearance. Adoption will hinge on hospitals already running CliniComp's EHR being willing to switch imaging viewers.</p>
+<div class="main">
 
-<h2>New LAAC Device Matches Watchman at One Year in SAFE-PROTECT Trial</h2>
-<div class="category">Clinical Advances</div>
-<p><strong>Core Development:</strong> Twelve-month results from the SAFE-PROTECT randomized trial (published July 6) showed the AnchorMan left atrial appendage closure (LAAC) device was noninferior to the market-leading Watchman 2.5 in patients with non-valvular AFib, with 98.1% clinical success in both arms.</p>
-<p><strong>Context & Impact:</strong> Watchman has effectively owned the LAAC market (the stroke-prevention alternative to lifelong blood thinners) for years. A device that matches its safety and efficacy — and showed less peridevice leakage, a known Watchman weak spot — gives interventional cardiologists a real second option for the first time in a while. A head-to-head trial against the newer Watchman FLX/FLX Pro is already planned, which is the comparison that will actually matter for market share.</p>
-<p><strong>Technical & Regulatory:</strong> Rates of death, stroke, major bleeding and device-related complications were comparable between arms; the differentiator was superior appendage sealing, attributed to AnchorMan's anchor-based design. Broader adoption still depends on the FLX-comparison trial and on operators building procedural experience with a new device shape.</p>
+  <div class="section-label">This Week at a Glance</div>
+  <div class="glance-grid">
 
-<h2>First Urine-Based Multi-Cancer Test Gets FDA Breakthrough Designation</h2>
-<div class="category">Regulatory Updates</div>
-<p><strong>Core Development:</strong> TOBY Inc. received FDA Breakthrough Device Designation (July 6) for its urine-based Multi-Cancer Early Detection (MCED) test — the first urine MCED technology to earn that status.</p>
-<p><strong>Context & Impact:</strong> Multi-cancer early detection has so far meant a blood draw (Grail's Galleri being the best-known example). A non-invasive urine-based alternative could meaningfully lower the barrier to routine screening — easier to collect, easier to ship, easier to fit into a wellness-visit workflow. Breakthrough designation doesn't mean it works yet, but it does mean FDA sees enough promise to fast-track review and give TOBY more frequent agency interaction as it builds its evidence package.</p>
-<p><strong>Technical & Regulatory:</strong> Breakthrough designation isn't a clearance or approval — it's a priority-review status. TOBY still needs to run and report clinical validation studies before it can seek an actual marketing authorization; the real test is whether urine-based biomarkers can match blood-based sensitivity across the "majority of global cancer incidence" the company is targeting.</p>
+    <div class="glance-card cat-newproducts">
+      <div class="glance-cat">New Products/Approvals</div>
+      <ul>
+        <li><a href="#visby-pcr">Visby's at-home flu + COVID PCR test clears FDA</a></li>
+        <li><a href="#neo-medical">Neo Medical launches instant-access MIS spine platform</a></li>
+        <li><a href="#egg-medical">Egg Medical debuts lighter cath lab radiation shielding</a></li>
+      </ul>
+    </div>
 
-<h2>Laplace Interventional Gets FDA Green Light to Start Pivotal Tricuspid Valve Trial</h2>
-<div class="category">Regulatory Updates</div>
-<p><strong>Core Development:</strong> Laplace Interventional announced FDA approval (June 29–July 2) of an Investigational Device Exemption (IDE) for TRIUMPH, its pivotal trial for a transcatheter tricuspid valve replacement (TTVR) system treating severe tricuspid regurgitation.</p>
-<p><strong>Context & Impact:</strong> Tricuspid valve disease has long been the "forgotten" valve — undertreated because open-heart surgery is high-risk for these patients and transcatheter options are newer and less proven than for the mitral or aortic valve. TRIUMPH will randomize roughly 400 patients 2:1 against existing commercial TTVR devices, plus a 150-patient registry for patients who don't qualify for either commercial TTVR or edge-to-edge repair — a direct bid to expand who's eligible for a minimally invasive fix.</p>
-<p><strong>Technical & Regulatory:</strong> IDE approval just clears Laplace to start enrolling (up to 75 sites, principal investigators from Mayo Clinic, Vanderbilt and Providence St. Vincent); a PMA submission and approval are still years out. The company is competing in an increasingly crowded TTVR field against larger players with more clinical data.</p>
+    <div class="glance-card cat-tech">
+      <div class="glance-cat">Tech Innovations</div>
+      <ul>
+        <li><a href="#clinicomp">CliniComp wins clearance for AI-native PACS viewer</a></li>
+      </ul>
+    </div>
 
-<h2>Belgian Startup Azalea Vision Lands Up to €7.5M to Push Smart Contact Lens Into Clinical Trials</h2>
-<div class="category">Market Developments</div>
-<p><strong>Core Development:</strong> Azalea Vision was selected for the EU's European Innovation Council (EIC) Accelerator (announced July 1), securing up to €7.5 million — a €2.5M grant plus a planned €5M equity investment — to move its medical-grade smart contact lens into clinical development.</p>
-<p><strong>Context & Impact:</strong> It's a small deal in dollar terms, but it's a signal for two things worth watching: European deep-tech medtech is increasingly funded through public-private EIC vehicles rather than pure VC, and "smart" ophthalmic devices (lenses with embedded electronics) are edging toward real clinical testing rather than just concept demos. Worth watching for anyone tracking non-invasive monitoring or vision-correction tech.</p>
-<p><strong>Technical & Regulatory:</strong> The funding moves the lens from technical validation into clinical trials — it is not yet in patients in a pivotal sense, and EU MDR clearance (a longer, more conservative path than FDA 510(k) for novel device classes) is still ahead.</p>
+    <div class="glance-card cat-clinical">
+      <div class="glance-cat">Clinical Advances</div>
+      <ul>
+        <li><a href="#anchorman">New LAAC device matches Watchman at one year</a></li>
+      </ul>
+    </div>
 
-<h2>Egg Medical Debuts Lighter, Construction-Free Radiation Shielding for Cath Labs</h2>
-<div class="category">New Products/Approvals</div>
-<p><strong>Core Development:</strong> Egg Medical launched EggNest Complete 2.0 (July 6), the next generation of its radiation-shielding system for interventional labs, with a lighter carbon-fiber build and no-construction installation.</p>
-<p><strong>Context & Impact:</strong> Radiation exposure is a real occupational hazard for interventional cardiologists and staff who spend careers standing next to fluoroscopy equipment; traditional shielding often means heavy lead aprons or expensive lab construction/renovation. A shield that installs without construction downtime or architectural permitting is a practical, low-drama win — it lets hospitals upgrade protection without taking a cath lab offline for weeks.</p>
-<p><strong>Technical & Regulatory:</strong> This is an iterative hardware upgrade (lighter materials, easier-to-clean components) rather than a new clearance category, so the adoption curve is mostly about hospital capital budgets, not regulatory review.</p>
+    <div class="glance-card cat-regulatory">
+      <div class="glance-cat">Regulatory Updates</div>
+      <ul>
+        <li><a href="#toby">First urine-based multi-cancer test gets Breakthrough status</a></li>
+        <li><a href="#laplace">Laplace gets IDE approval for pivotal tricuspid valve trial</a></li>
+      </ul>
+    </div>
 
-<h2>Emerging Trends</h2>
-<p>It was a genuinely quiet week for device news — no blockbuster M&A closed and no major recall dominated headlines — but the developments that did land point in a consistent direction: incumbency is getting challenged on multiple fronts at once. AnchorMan matching Watchman, CliniComp folding imaging AI into the EHR instead of selling it standalone, and Laplace chasing tricuspid disease that bigger players have been slower to address all fit a pattern of newer, more focused companies picking off specific gaps left by category leaders rather than trying to out-build them wholesale.</p>
-<p>The other throughline is non-invasive and at-home diagnostics quietly maturing — Visby's at-home PCR and TOBY's urine-based cancer test are both attempts to move testing that used to require a lab or a blood draw into something closer to a consumer product. If either clears its remaining regulatory bar, it's the kind of shift that changes where and how often people get tested, not just what the test can detect.</p>
-<p>Practically: hospital and health-system buyers should watch the EggNest and Neo Medical launches as near-term, low-friction upgrades (no new clearance risk, mostly a procurement decision); device investors and BD teams should keep an eye on the tricuspid valve space, which is still wide open compared to mitral and aortic; and anyone in diagnostics should watch whether TOBY's urine MCED data, once it starts rolling in, can actually match blood-based sensitivity — that's the make-or-break question for the whole approach.</p>
+    <div class="glance-card cat-market">
+      <div class="glance-cat">Market Developments</div>
+      <ul>
+        <li><a href="#azalea">Azalea Vision lands up to €7.5M for smart contact lens</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="section-label">New Products / Approvals</div>
+
+  <div id="visby-pcr" class="dev-card cat-newproducts">
+    <h3>Visby Medical's At-Home Flu + COVID PCR Test Clears FDA</h3>
+    <div class="cat-pill">New Products/Approvals</div>
+    <p><strong>Core Development:</strong> Visby Medical won FDA clearance (July 2) for its Flu and COVID-19 Test, the first at-home, multi-viral PCR test. It's a single-use, palm-sized cartridge that gives lab-quality results for COVID and flu A/B in about 30 minutes, no lab or clinician required.</p>
+    <p><strong>Context & Impact:</strong> At-home rapid antigen tests are fast but not very accurate; PCR is accurate but usually means a lab and a days-long wait. Visby collapses that trade-off into a single consumer product. For patients, that means same-day antiviral treatment decisions (like Tamiflu or Paxlovid, which only work early) without a clinic visit. For the market, it's a shot at converting flu-season urgent care traffic into retail pharmacy sales.</p>
+    <p><strong>Technical & Regulatory:</strong> Cleared via 510(k), and this is Visby's second OTC PCR product after its standalone COVID/flu single-tests, so the regulatory path was well-trodden. The main challenge ahead is manufacturing scale-up and retail distribution before this fall/winter respiratory season.</p>
+  </div>
+
+  <div id="neo-medical" class="dev-card cat-newproducts">
+    <h3>Neo Medical Launches "Instant MIS Access" Spine Platform in the US</h3>
+    <div class="cat-pill">New Products/Approvals</div>
+    <p><strong>Core Development:</strong> Neo Medical debuted its Instant MIS Access platform (July 6) for minimally invasive spine surgery, covering posterior thoracic, lumbar and sacral procedures.</p>
+    <p><strong>Context & Impact:</strong> Minimally invasive spine surgery has been held back less by surgical technique and more by clunky, multi-vendor instrument sets and OR logistics. Neo Medical is targeting those operational barriers directly — lowering the bar for more hospitals to offer MIS spine surgery instead of open procedures.</p>
+    <p><strong>Technical & Regulatory:</strong> A US commercial launch, not a novel implant, so the near-term hurdle is surgeon training and hospital procurement rather than a new FDA review.</p>
+  </div>
+
+  <div id="egg-medical" class="dev-card cat-newproducts">
+    <h3>Egg Medical Debuts Lighter, Construction-Free Radiation Shielding for Cath Labs</h3>
+    <div class="cat-pill">New Products/Approvals</div>
+    <p><strong>Core Development:</strong> Egg Medical launched EggNest Complete 2.0 (July 6), the next generation of its radiation-shielding system for interventional labs, with a lighter carbon-fiber build and no-construction installation.</p>
+    <p><strong>Context & Impact:</strong> Radiation exposure is a real occupational hazard for interventional cardiologists; traditional shielding means heavy lead aprons or expensive lab renovation. A shield that installs without construction downtime lets hospitals upgrade protection without taking a cath lab offline for weeks.</p>
+    <p><strong>Technical & Regulatory:</strong> An iterative hardware upgrade rather than a new clearance category, so adoption is mostly about hospital capital budgets, not regulatory review.</p>
+  </div>
+
+  <div class="section-label">Tech Innovations</div>
+
+  <div id="clinicomp" class="dev-card cat-tech">
+    <h3>CliniComp Wins Clearance for AI-Native PACS Viewer</h3>
+    <div class="cat-pill">Tech Innovations</div>
+    <p><strong>Core Development:</strong> CliniComp received FDA 510(k) clearance (July 7) for its PACS Viewer, classified as a Medical Image Management and Processing System, which folds diagnostic-quality imaging and AI tools directly into its "New Era" EHR.</p>
+    <p><strong>Context & Impact:</strong> Most hospitals bounce between a separate imaging viewer (PACS) and their EHR, with AI tools bolted on as yet another system. Baking image viewing and native AI into the EHR itself bets that clinicians want one screen, not three — part of a broader industry push to consolidate imaging AI into core clinical workflow.</p>
+    <p><strong>Technical & Regulatory:</strong> Cleared under 510(k), a well-established device category. Adoption hinges on hospitals already running CliniComp's EHR being willing to switch imaging viewers.</p>
+  </div>
+
+  <div class="section-label">Clinical Advances</div>
+
+  <div id="anchorman" class="dev-card cat-clinical">
+    <h3>New LAAC Device Matches Watchman at One Year in SAFE-PROTECT Trial</h3>
+    <div class="cat-pill">Clinical Advances</div>
+    <p><strong>Core Development:</strong> Twelve-month results from the SAFE-PROTECT trial (published July 6) showed the AnchorMan left atrial appendage closure device was noninferior to the market-leading Watchman 2.5 in AFib patients, with 98.1% clinical success in both arms.</p>
+    <p><strong>Context & Impact:</strong> Watchman has effectively owned the LAAC market for years. A device that matches its safety and efficacy — with less peridevice leakage, a known Watchman weak spot — gives cardiologists a real second option for the first time in a while.</p>
+    <p><strong>Technical & Regulatory:</strong> Death, stroke, bleeding and complication rates were comparable between arms; the differentiator was superior appendage sealing from AnchorMan's anchor-based design. Broader adoption depends on a planned head-to-head trial against the newer Watchman FLX/FLX Pro.</p>
+  </div>
+
+  <div class="section-label">Regulatory Updates</div>
+
+  <div id="toby" class="dev-card cat-regulatory">
+    <h3>First Urine-Based Multi-Cancer Test Gets FDA Breakthrough Designation</h3>
+    <div class="cat-pill">Regulatory Updates</div>
+    <p><strong>Core Development:</strong> TOBY Inc. received FDA Breakthrough Device Designation (July 6) for its urine-based Multi-Cancer Early Detection test — the first urine MCED technology to earn that status.</p>
+    <p><strong>Context & Impact:</strong> Multi-cancer early detection has so far meant a blood draw (Grail's Galleri being the best-known example). A non-invasive urine-based alternative could lower the barrier to routine screening — easier to collect, ship, and fit into a wellness visit.</p>
+    <p><strong>Technical & Regulatory:</strong> Breakthrough designation isn't a clearance — it's priority-review status. TOBY still needs clinical validation data showing urine-based biomarkers can match blood-based sensitivity.</p>
+  </div>
+
+  <div id="laplace" class="dev-card cat-regulatory">
+    <h3>Laplace Interventional Gets FDA Green Light to Start Pivotal Tricuspid Valve Trial</h3>
+    <div class="cat-pill">Regulatory Updates</div>
+    <p><strong>Core Development:</strong> Laplace Interventional announced FDA approval of an Investigational Device Exemption for TRIUMPH, its pivotal trial for a transcatheter tricuspid valve replacement system treating severe tricuspid regurgitation.</p>
+    <p><strong>Context & Impact:</strong> Tricuspid valve disease has long been the "forgotten" valve — undertreated because open-heart surgery is high-risk and transcatheter options are newer than for mitral or aortic. TRIUMPH is a direct bid to expand who's eligible for a minimally invasive fix.</p>
+    <p><strong>Technical & Regulatory:</strong> IDE approval just clears Laplace to start enrolling (up to 75 sites); a PMA submission and approval are still years out, in an increasingly crowded field.</p>
+  </div>
+
+  <div class="section-label">Market Developments</div>
+
+  <div id="azalea" class="dev-card cat-market">
+    <h3>Belgian Startup Azalea Vision Lands Up to €7.5M for Smart Contact Lens</h3>
+    <div class="cat-pill">Market Developments</div>
+    <p><strong>Core Development:</strong> Azalea Vision was selected for the EU's European Innovation Council Accelerator (announced July 1), securing up to €7.5 million to move its medical-grade smart contact lens into clinical development.</p>
+    <p><strong>Context & Impact:</strong> A small deal in dollar terms, but a signal worth watching: European deep-tech medtech is increasingly funded through public-private EIC vehicles, and "smart" ophthalmic devices are edging toward real clinical testing rather than concept demos.</p>
+    <p><strong>Technical & Regulatory:</strong> The funding moves the lens into clinical trials, not yet pivotal patient use — and EU MDR clearance, a longer path than FDA 510(k) for novel device classes, is still ahead.</p>
+  </div>
+
+  <div class="section-label">Emerging Trends</div>
+  <div class="trends">
+    <div class="trends-icon">💡</div>
+    <div>
+      <p>It was a genuinely quiet week for device news — no blockbuster M&A closed and no major recall dominated headlines — but the developments that did land point in a consistent direction: incumbency is getting challenged on multiple fronts at once. AnchorMan matching Watchman, CliniComp folding imaging AI into the EHR instead of selling it standalone, and Laplace chasing tricuspid disease that bigger players have been slower to address all fit a pattern of newer, more focused companies picking off specific gaps left by category leaders.</p>
+      <p>The other throughline is non-invasive, at-home diagnostics quietly maturing — Visby's at-home PCR and TOBY's urine-based cancer test are both attempts to move testing that used to require a lab or blood draw into something closer to a consumer product.</p>
+      <p>Practically: hospital buyers should watch EggNest and Neo Medical as low-friction, no-new-clearance-risk upgrades; device investors should keep an eye on the still-wide-open tricuspid valve space; and diagnostics watchers should track whether TOBY's urine MCED data can match blood-based sensitivity — the make-or-break question for the whole approach.</p>
+    </div>
+  </div>
+
+</div>
 
 <footer>
   Generated automatically. Last updated: 2026-07-07.
-  <p class="archive-link">Past editions: <a href="archive/2026-07-07.html">2026-07-07</a></p>
+  <div class="archive-links">Past editions: <a href="archive/2026-07-07.html">2026-07-07</a></div>
 </footer>
+
 </body>
 </html>
