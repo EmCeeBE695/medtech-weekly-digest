@@ -51,6 +51,7 @@
   .dev-card p { font-size: .87rem; color: var(--slate-700); margin: 0 0 10px; }
   .dev-card p:last-child { margin-bottom: 0; }
   .dev-card p strong { color: var(--slate); }
+  .class-connect-tag { display:inline-block; font-size:.66rem; font-weight:700; letter-spacing:.03em; padding:3px 10px; border-radius:999px; margin-left:8px; background:var(--teal-faint); color:var(--teal-dark); vertical-align:middle; }
 
   .cat-newproducts { --cat-color: var(--teal); --cat-faint: var(--teal-faint); }
   .cat-clinical     { --cat-color: var(--purple); --cat-faint: var(--purple-faint); }
@@ -91,13 +92,13 @@
   <div class="hero-inner">
     <div class="hero-eyebrow">Medical Device &amp; Health Tech</div>
     <h1>This Week in Medical Devices</h1>
-    <p>The most significant device developments from the past 7 days &mdash; new approvals, clinical results, tech launches, regulatory moves, and market news, with the practical &ldquo;why it matters&rdquo; for each.</p>
+    <p>The most significant device developments from the past 7 days — new approvals, clinical results, tech launches, regulatory moves, and market news, with the practical "why it matters" for each.</p>
     <div class="hero-tags">
-      <span class="hero-tag">1 New Products/Approvals</span>
-      <span class="hero-tag">1 Tech Innovations</span>
-      <span class="hero-tag">1 Clinical Advances</span>
-      <span class="hero-tag">2 Regulatory Updates</span>
-      <span class="hero-tag">1 Market Developments</span>
+      <span class="hero-tag">2 New Products/Approvals</span>
+      <span class="hero-tag">2 Tech Innovations</span>
+      <span class="hero-tag">1 Clinical Advance</span>
+      <span class="hero-tag">1 Regulatory Update</span>
+      <span class="hero-tag">1 Market Development</span>
     </div>
   </div>
 </div>
@@ -109,32 +110,33 @@
     <div class="glance-card cat-newproducts">
       <div class="glance-cat">New Products/Approvals</div>
       <ul>
-        <li><a href="#aletta-robotic-blood-draw">FDA clears first robot that draws blood on its own</a></li>
+        <li><a href="#aletta-robotic-blood-draw">FDA authorizes first robotic blood-draw device</a></li>
+        <li><a href="#freenome-simplescreen-lung">Freenome's blood test for lung cancer gets breakthrough status</a></li>
       </ul>
     </div>
     <div class="glance-card cat-tech">
       <div class="glance-cat">Tech Innovations</div>
       <ul>
-        <li><a href="#neuroquant-pet-clearance">AI tool cleared to standardize Alzheimer's PET scans</a></li>
+        <li><a href="#vb-spine-ar-navigation">VB Spine buys AR navigation tech for spine surgery</a></li>
+        <li><a href="#abbott-google-lingo-ai">Abbott and Google pair glucose sensor with AI coaching</a></li>
       </ul>
     </div>
     <div class="glance-card cat-clinical">
       <div class="glance-cat">Clinical Advances</div>
       <ul>
-        <li><a href="#ai-devices-patient-outcomes-gap">Study: almost no cleared AI devices tested on outcomes</a></li>
+        <li><a href="#ai-devices-outcomes-study">Study: most AI devices never proven to help patients</a></li>
       </ul>
     </div>
     <div class="glance-card cat-regulatory">
       <div class="glance-cat">Regulatory Updates</div>
       <ul>
-        <li><a href="#fda-genai-device-framework">FDA opens comment on rules for GenAI-enabled devices</a></li>
-        <li><a href="#cms-rapid-coverage-pathway">CMS proposes fast Medicare coverage for breakthrough devices</a></li>
+        <li><a href="#medtronic-catheter-recall">Medtronic recalls 100K+ heart catheters over bending defect</a></li>
       </ul>
     </div>
     <div class="glance-card cat-market">
       <div class="glance-cat">Market Developments</div>
       <ul>
-        <li><a href="#hb-fuller-ams-acquisition">Shareholders approve $870M wound-care device buyout</a></li>
+        <li><a href="#abbott-medtech-cyberattack">Abbott becomes fifth medtech company hit by data breach</a></li>
       </ul>
     </div>
   </div>
@@ -142,67 +144,76 @@
   <div class="section-label">New Products/Approvals</div>
 
   <div id="aletta-robotic-blood-draw" class="dev-card cat-newproducts">
-    <h3>FDA Authorizes Aletta, First Autonomous Robotic Blood-Draw Device</h3>
+    <h3>FDA Authorizes First-of-Its-Kind Robotic Blood Draw Device</h3>
     <div class="cat-pill">New Products/Approvals</div>
-    <p><strong>Core Development:</strong> On August 19, the FDA authorized Aletta, made by Dutch medtech company Vitestro &mdash; the first standalone robot that can draw blood from a patient's arm with no hands-on operator. It uses near-infrared light and Doppler ultrasound to find a suitable vein and distinguish it from arteries, then performs the stick itself. Clinical testing showed success rates comparable to, or better than, trained phlebotomists.</p>
-    <p><strong>Context &amp; Impact:</strong> Phlebotomy has a chronic staffing shortage in the U.S., and blood draws are one of the highest-volume touchpoints in outpatient care. One trained phlebotomist can now supervise up to three Aletta units at once, which could meaningfully change staffing math for labs, urgent care clinics, and blood donation centers if adoption scales.</p>
-    <p><strong>Technical &amp; Regulatory:</strong> Authorized for adults in outpatient settings only, and it must run under supervision of a phlebotomy-trained staffer. Built-in safeguards include continuous skin disinfection during the ultrasound scan, automatic needle detachment if the patient moves, and sensors that pause the procedure and alert the supervisor on unsafe conditions.</p>
+    <p><strong>Core Development:</strong> On August 19, the FDA authorized Aletta, the first standalone robotic device cleared to draw blood from a patient's arm without a phlebotomist's hands-on involvement. It uses near-infrared light and Doppler ultrasound to locate a suitable vein and tell it apart from nearby arteries, then completes the draw; one trained phlebotomist can supervise up to three units at once.</p>
+    <p><strong>Context & Impact:</strong> The U.S. has a well-documented phlebotomist shortage, especially in outpatient and rural settings, and blood draws are one of the most common — and most often botched — procedures in a clinic. In FDA-reviewed testing, Aletta's success rate matched or beat trained human phlebotomists. If it scales, it could ease staffing bottlenecks for a task performed billions of times a year in the U.S.</p>
+    <p><strong>Technical & Regulatory:</strong> Aletta cleared through FDA authorization for novel devices without a predicate, reflecting its first-in-category status, rather than a straightforward 510(k). Safety interlocks include automatic needle detachment if a patient moves and sensors that pause the procedure on unsafe conditions. It's authorized only for adults in outpatient settings, under supervision by a phlebotomy-trained operator.</p>
+  </div>
+
+  <div id="freenome-simplescreen-lung" class="dev-card cat-newproducts">
+    <h3>Freenome's Blood-Based Lung Cancer Test Earns FDA Breakthrough Device Status</h3>
+    <div class="cat-pill">New Products/Approvals</div>
+    <p><strong>Core Development:</strong> On August 12, the FDA granted Breakthrough Device Designation to Freenome's SimpleScreen Lung, a blood-based test intended to flag early signs of lung cancer in adults 50–80 with a 20+ pack-year smoking history who aren't already enrolled in guideline-recommended screening (low-dose CT).</p>
+    <p><strong>Context & Impact:</strong> Lung cancer screening uptake is notoriously low — well under a third of eligible people get the recommended CT scan, due to access, cost, and stigma. A standard blood draw is a much lower-friction alternative that could be offered during routine visits, potentially catching more cancers earlier when they're more treatable.</p>
+    <p><strong>Technical & Regulatory:</strong> Breakthrough Device Designation isn't approval — it gets Freenome faster, more interactive FDA engagement and eligibility for expedited review once it submits for marketing authorization. The company still has to show the test performs well enough as a screening tool, including acceptable false-positive and false-negative rates, before it can reach the market.</p>
   </div>
 
   <div class="section-label">Tech Innovations</div>
 
-  <div id="neuroquant-pet-clearance" class="dev-card cat-tech">
-    <h3>Cortechs.ai Wins FDA Clearance for NeuroQuant PET, an Alzheimer's Imaging Tool</h3>
+  <div id="vb-spine-ar-navigation" class="dev-card cat-tech">
+    <h3>VB Spine Completes Acquisition of Augmedics' AR Navigation Technology</h3>
     <div class="cat-pill">Tech Innovations</div>
-    <p><strong>Core Development:</strong> On August 18, Cortechs.ai received FDA 510(k) clearance for NeuroQuant PET, software that automatically quantifies amyloid PET scans &mdash; used to assess Alzheimer's disease &mdash; across the three most common tracers (flutemetamol, florbetaben, florbetapir) using a standardized Centiloid scale, and works with PET-CT, PET-MR, or PET-only systems.</p>
-    <p><strong>Context &amp; Impact:</strong> As anti-amyloid Alzheimer's drugs move into wider use, radiologists need a consistent, automated way to read and compare amyloid PET scans across different tracers and scanners rather than relying on visual read alone. Standardized quantification could speed up diagnosis and treatment-monitoring workflows in memory clinics and hospital imaging departments.</p>
-    <p><strong>Technical &amp; Regulatory:</strong> The software delivers fully automated regional analysis and PACS-ready structured reports, plugging into existing radiology workflows without requiring new hardware. It complements Cortechs.ai's existing FDA-cleared NeuroQuant tools for monitoring ARIA (amyloid-related imaging abnormalities), a known side effect of anti-amyloid therapies.</p>
+    <p><strong>Core Development:</strong> VB Spine, the largest privately held spine device company, finalized its purchase of Augmedics' CT-to-fluoroscopy ("CT-Fluoro") augmented reality navigation technology, folding it into its xvision Spine System platform this month.</p>
+    <p><strong>Context & Impact:</strong> Surgical AR navigation lets a surgeon see a 3D overlay of a patient's anatomy through a headset instead of glancing away to a separate monitor. CT-Fluoro specifically lets the system register a patient's pre-op CT scan against standard fluoroscopy images, instead of requiring an intraoperative CT or 3D imaging system — expensive equipment most surgical suites don't have. That widens which hospitals can realistically offer AR-guided spine surgery.</p>
+    <p><strong>Technical & Regulatory:</strong> This is an asset acquisition, not a new FDA clearance — the underlying Augmedics technology was already cleared, and VB Spine is integrating it into its own platform. It follows an earlier 2026 deal for the core xvision system, part of a broader strategy of assembling a digital/AR ecosystem for spine surgery through incremental tech acquisitions rather than in-house R&D.</p>
+  </div>
+
+  <div id="abbott-google-lingo-ai" class="dev-card cat-tech">
+    <h3>Abbott and Google Health Pair Glucose Biosensor Data with AI Coaching</h3>
+    <div class="cat-pill">Tech Innovations</div>
+    <p><strong>Core Development:</strong> On August 11, Abbott and Google Health announced a multiyear partnership connecting Abbott's over-the-counter Lingo glucose biosensor with the Google Health app, using Google's AI to turn glucose trends into personalized, everyday health recommendations.</p>
+    <p><strong>Context & Impact:</strong> Lingo is Abbott's consumer (non-prescription) continuous glucose monitor, aimed at general wellness rather than diabetes management. Pairing it with a major consumer AI platform is a bet that glucose data becomes a mainstream fitness-tracker-style metric, the way heart rate and sleep already have — and it puts Abbott's hardware in front of Google's much larger consumer install base.</p>
+    <p><strong>Technical & Regulatory:</strong> Lingo itself is FDA-cleared as an over-the-counter CGM, but the AI coaching layer sits outside device regulation as general wellness software, so it doesn't need its own clearance. The more open question is data governance — how glucose data flows between a medical device company and a consumer tech platform, and what that means for user privacy expectations.</p>
   </div>
 
   <div class="section-label">Clinical Advances</div>
 
-  <div id="ai-devices-patient-outcomes-gap" class="dev-card cat-clinical">
-    <h3>Study Finds Almost None of 1,357 FDA-Cleared AI Devices Were Tested on Patient Outcomes</h3>
+  <div id="ai-devices-outcomes-study" class="dev-card cat-clinical">
+    <h3>Study Finds Almost None of FDA's Authorized AI Devices Were Tested on Patient Outcomes</h3>
     <div class="cat-pill">Clinical Advances</div>
-    <p><strong>Core Development:</strong> A new analysis published in PLOS Digital Health on August 19 examined all 1,357 AI-based medical devices the FDA has authorized. Just 34 (2.5%) were linked to a registered prospective clinical trial, and only 3 (0.2%) were actually evaluated on whether they improve patient-centered outcomes like mortality, hospitalization, or quality of life. Most of the studies that did exist were small, observational, and often excluded vulnerable populations.</p>
-    <p><strong>Context &amp; Impact:</strong> This is a stark reminder that "FDA-cleared" for an AI device usually means it was cleared to perform a technical task (like flagging a nodule) accurately, not that it was proven to help patients get better outcomes. For device developers and hospital purchasing committees, it's a case for building outcomes evidence into commercialization plans early, not treating clearance as the finish line.</p>
-    <p><strong>Technical &amp; Regulatory:</strong> The gap exists because most AI/ML devices go through the FDA's 510(k) pathway, which requires showing substantial equivalence to a predicate device and analytical/technical performance, not randomized outcome trials. The findings are likely to fuel ongoing debate over whether FDA's postmarket surveillance and real-world performance monitoring requirements for AI devices need to be strengthened.</p>
+    <p><strong>Core Development:</strong> Researchers from the University of Toronto, publishing in PLOS Digital Health on August 19, reviewed 1,357 AI-based medical devices the FDA has authorized and found only three had been tested for whether they actually improved patient outcomes — the rest were cleared on technical performance (like diagnostic accuracy) alone.</p>
+    <p><strong>Context & Impact:</strong> This is a credibility gap the device industry has been aware of for a while but rarely quantified this starkly. A device can be accurate at flagging an abnormal scan without ever being shown to change what clinicians do or how patients actually fare. For hospitals and clinicians deciding whether to adopt an AI tool, "FDA cleared" turns out to say much less than it sounds like.</p>
+    <p><strong>Technical & Regulatory:</strong> Most AI/ML devices clear via the 510(k) pathway, which requires only "substantial equivalence" to a predicate device and doesn't mandate outcomes data. The finding adds pressure on FDA's ongoing efforts — including post-market surveillance expectations for adaptive AI/ML — to tighten evidence standards, though any formal rule change would be a multi-year process.</p>
   </div>
 
   <div class="section-label">Regulatory Updates</div>
 
-  <div id="fda-genai-device-framework" class="dev-card cat-regulatory">
-    <h3>FDA Opens Public Comment on Regulatory Framework for Generative AI-Enabled Devices</h3>
+  <div id="medtronic-catheter-recall" class="dev-card cat-regulatory">
+    <h3>FDA Finalizes Class I Recall of Medtronic Heart Vent Catheters</h3>
     <div class="cat-pill">Regulatory Updates</div>
-    <p><strong>Core Development:</strong> On August 18, the FDA issued a discussion paper proposing a two-axis risk framework to classify and regulate generative AI-enabled medical devices &mdash; tools that use large language models or similar generative systems rather than traditional predictive algorithms. It's seeking feedback from manufacturers, clinicians, and the public through October 19 under docket FDA-2026-N-7874.</p>
-    <p><strong>Context &amp; Impact:</strong> Generative AI tools (think clinical documentation assistants, diagnostic chatbots, or summarization tools) don't fit neatly into FDA's existing AI/ML device framework, which was built around models that output a fixed prediction. Getting this right matters a lot for the wave of GenAI health startups now working toward FDA clearance, since the eventual framework will determine what evidence they need and how fast they can get to market.</p>
-    <p><strong>Technical &amp; Regulatory:</strong> This is a discussion paper, not a binding rule &mdash; it's a foundational step toward a purpose-built framework, and the agency says it aligns with a stated administration priority to accelerate AI-enabled medical product development while preserving patient safety. Expect an actual draft guidance to take a while longer.</p>
-  </div>
-
-  <div id="cms-rapid-coverage-pathway" class="dev-card cat-regulatory">
-    <h3>CMS Formally Proposes RAPID Pathway for Faster Medicare Coverage of Breakthrough Devices</h3>
-    <div class="cat-pill">Regulatory Updates</div>
-    <p><strong>Core Development:</strong> On August 11, CMS published the formal proposed notice for its Regulatory Alignment for Predictable and Immediate Device (RAPID) coverage pathway, first announced with the FDA back in April. The plan: for eligible Breakthrough Devices running an Investigational Device Exemption study that includes Medicare beneficiaries, CMS would issue a proposed national coverage determination the same day the FDA authorizes the device, aiming for Medicare coverage within 60-90 days of authorization instead of the multi-year gap that's typical today.</p>
-    <p><strong>Context &amp; Impact:</strong> The lag between FDA approval and Medicare paying for a device has long been a bottleneck that discourages investment in breakthrough technology aimed at older or disabled patients &mdash; a device can be legally on the market for years before Medicare reimbursement makes it commercially viable. This pathway, if finalized, would meaningfully shorten that runway for developers targeting Medicare-heavy populations.</p>
-    <p><strong>Technical &amp; Regulatory:</strong> Comments are open through October 13 at docket CMS-2026-2674. To make room for it, CMS is pausing new candidates for its existing Transitional Coverage for Emerging Technologies (TCET) pathway. Eligibility is limited to certain Class II and Class III Breakthrough-designated devices with pre-agreed clinical outcome measures.</p>
+    <p><strong>Core Development:</strong> The FDA finalized a Class I recall — its most serious category — covering more than 101,000 Medtronic DLP Left Heart Vent Catheters, after reports that the catheters were resisting shape retention when bent during cardiac surgery. Medtronic has reported three serious injuries and no deaths so far.</p>
+    <p><strong>Context & Impact:</strong> These catheters vent the left side of the heart during open-heart surgery, so a device that won't hold its shape when a surgeon bends it to fit anatomy is a real intraoperative safety issue, not a paperwork problem. Class I means the FDA has determined use of the device could cause serious injury or death.</p>
+    <p><strong>Technical & Regulatory:</strong> The recall covers dozens of specific lots, so affected hospitals need to check lot numbers against the FDA's list rather than assume every unit is involved. It's a useful reminder that mechanical properties like shape retention are basic bench-test parameters — a failure here points to either manufacturing process drift or a spec that wasn't tight enough to begin with.</p>
   </div>
 
   <div class="section-label">Market Developments</div>
 
-  <div id="hb-fuller-ams-acquisition" class="dev-card cat-market">
-    <h3>AMS Shareholders Approve $870M Acquisition by Adhesives Giant H.B. Fuller</h3>
+  <div id="abbott-medtech-cyberattack" class="dev-card cat-market">
+    <h3>Abbott Becomes Fifth Major Medtech Company Hit by Data Breach Since April</h3>
     <div class="cat-pill">Market Developments</div>
-    <p><strong>Core Development:</strong> On August 12, shareholders of UK-listed Advanced Medical Solutions Group (AMS), a maker of tissue-healing and wound-closure products, voted to approve H.B. Fuller's roughly £659 million ($870 million) cash acquisition, with over 84% shareholder support. The deal is expected to close in Q3 or Q4 2026, pending court sanction.</p>
-    <p><strong>Context &amp; Impact:</strong> H.B. Fuller is the world's largest pure-play adhesives company branching further into medical devices, specifically formulated biosurgicals and mechanical wound closures, as part of a stated goal to grow its medical-segment earnings to $100 million. It's a sign that industrial materials companies see durable margins in medtech wound care and are willing to pay up for established device makers rather than build in-house.</p>
-    <p><strong>Technical &amp; Regulatory:</strong> This is a straightforward scheme-of-arrangement acquisition under UK takeover rules, not a device-specific regulatory event &mdash; the remaining steps are court sanction and registration with the UK Registrar of Companies before the deal becomes effective.</p>
+    <p><strong>Core Development:</strong> Abbott confirmed it's investigating two separate cyber incidents — unauthorized access to legacy Cancer Diagnostics systems tied to its Exact Sciences business, and a separate breach of its LabCentral customer portal. The hacking group ShinyHunters has claimed responsibility, saying it obtained roughly 30 million records, including a million Social Security numbers.</p>
+    <p><strong>Context & Impact:</strong> Abbott is now the fifth named medtech company ShinyHunters has hit since April, following Medtronic, One Medical, AdaptHealth, and iRhythm. That's a pattern, not an isolated incident — it suggests medtech companies' legacy and acquired IT systems (Abbott's exposure traces back to older Exact Sciences infrastructure) are a soft target industry-wide.</p>
+    <p><strong>Technical & Regulatory:</strong> Abbott says there's no impact on patient care or device operations so far, but breaches involving Social Security numbers and clinical notes trigger HIPAA breach-notification obligations and typically draw state attorney general and class-action attention. For device makers, it's a pointed reminder that cybersecurity risk doesn't stop at the device itself — it extends to every legacy system a company inherits through M&A.</p>
   </div>
 
   <div class="section-label">Emerging Trends</div>
   <div class="trends">
     <div class="trends-icon">💡</div>
     <div>
-      <p>Two threads dominate this week: regulators are racing to build rules for AI before the technology outruns them, and payers are racing to close the gap between approval and reimbursement. The FDA's GenAI discussion paper and CMS's RAPID pathway are both attempts to get ahead of problems &mdash; one to prevent a regulatory vacuum for a new class of AI tools, the other to fix a known bottleneck that's discouraged investment in breakthrough devices for years. Neither is final yet, so the real test comes when comment periods close this fall.</p>
-      <p>The PLOS Digital Health study is a useful gut-check against the AI optimism elsewhere in this digest: clearance and clinical benefit are not the same thing, and right now the evidence base for most cleared AI devices is thin. Expect that gap &mdash; between what's cleared and what's actually proven to help patients &mdash; to become a bigger flashpoint as more AI tools reach the market and hospitals get more selective about what they'll actually pay for and adopt.</p>
+      <p>This week's mix leans toward quietly consequential rather than blockbuster: a first-of-kind robotic blood draw device, a spine AR acquisition, and a glucose-AI partnership are all incremental extensions of trends already underway — automation of routine clinical tasks, surgical AR, consumer health AI — rather than category-creating breakthroughs.</p>
+      <p>The more interesting throughline is scrutiny. The PLOS Digital Health study on AI devices and the Medtronic recall land on the same point from different angles: FDA clearance signals a device met its technical bar, not that it was proven to help patients or that its mechanical specs held up in practice. That gap matters more as AI-based devices multiply — 1,357 authorized and counting — and as more of them touch decisions clinicians act on directly.</p>
+      <p>And the Abbott breach confirms cybersecurity has become a standing feature of the medtech landscape rather than a one-off crisis: five major companies breached since April is a pattern that vendors, M&A due-diligence teams, and hospital IT risk assessments will need to treat as baseline, not exception.</p>
     </div>
   </div>
 
