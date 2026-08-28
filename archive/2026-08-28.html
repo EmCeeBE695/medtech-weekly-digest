@@ -37,6 +37,17 @@
   .section-label::after { content:''; flex:1; height:1px; background: var(--slate-300); }
   .section-label:first-of-type { margin-top: 0; }
 
+  .class-connect { background: linear-gradient(135deg, var(--slate) 0%, #0f3d38 100%); color:#fff; border-radius: 14px; padding: 28px 28px 24px; margin-bottom: 8px; }
+  .class-connect-eyebrow { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#5eead4; margin-bottom:10px; }
+  .class-connect h2 { margin:0 0 10px; font-size:1.25rem; font-weight:800; color:#fff; }
+  .class-connect-blurb { font-size:.88rem; color:rgba(255,255,255,.82); margin:0 0 18px; max-width:640px; }
+  .class-connect-item { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:10px; padding:14px 16px; margin-bottom:10px; }
+  .class-connect-item:last-child { margin-bottom:0; }
+  .class-connect-item p { margin:0; font-size:.85rem; color:rgba(255,255,255,.9); }
+  .class-connect-item a { color:#5eead4; font-weight:700; text-decoration:none; }
+  .class-connect-item a:hover { text-decoration:underline; }
+  .class-connect-note { font-size:.75rem; color:rgba(255,255,255,.55); margin-top:14px; }
+
   .glance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
   .glance-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 16px 18px; border-top: 3px solid var(--cat-color, var(--teal)); }
   .glance-cat { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--cat-color, var(--teal)); margin-bottom: 8px; }
@@ -94,125 +105,127 @@
     <h1>This Week in Medical Devices</h1>
     <p>The most significant device developments from the past 7 days — new approvals, clinical results, tech launches, regulatory moves, and market news, with the practical "why it matters" for each.</p>
     <div class="hero-tags">
-      <span class="hero-tag">2 New Products/Approvals</span>
-      <span class="hero-tag">1 Tech Innovation</span>
-      <span class="hero-tag">1 Clinical Advance</span>
-      <span class="hero-tag">1 Regulatory Update</span>
-      <span class="hero-tag">2 Market Developments</span>
+      <span class="hero-tag">1 New Product/Approval</span>
+      <span class="hero-tag">2 Tech Innovations</span>
+      <span class="hero-tag">2 Regulatory Updates</span>
+      <span class="hero-tag">1 Market Development</span>
     </div>
   </div>
 </div>
 
 <div class="main">
 
+  <div class="class-connect">
+    <div class="class-connect-eyebrow">BE695 Class Connection · Sept 2, 2026</div>
+    <h2>Course Structure, BINDER, Project Management</h2>
+    <p class="class-connect-blurb">Class 1 kicks off the course arc (Discover → Design → Develop → Deploy) and walks through all 15 sections of the BINDER — the Design History File students build all semester, spanning clinical/user needs, device requirements, human factors, V&amp;V testing, DFM, FMEA/risk management, regulatory pathway, IP, commercialization, and unintended consequences.</p>
+    <div class="class-connect-item">
+      <p><a href="#abiomed-impella-controller-recall">FDA alert: Abiomed heart-pump controller tied to 3 deaths, 37 injuries</a> — cautionary example for the risk-management/FMEA and post-market surveillance sections of the BINDER: a failure mode that wasn't fully caught before launch is now playing out in ICUs, and it's the second Impella purge-system issue in six months.</p>
+    </div>
+    <div class="class-connect-item">
+      <p><a href="#boston-scientific-enroute-recall-cyberattack">Boston Scientific hit by Class I stroke-device recall and cyberattack same week</a> — another cautionary example, this time for the verification &amp; validation and quality-systems sections: a catheter tip that can separate during use is exactly the kind of failure mode design V&amp;V testing exists to catch before a device ships.</p>
+    </div>
+    <div class="class-connect-item">
+      <p><a href="#abbott-libre-duo-glucose-ketone-monitor">Abbott's Libre Duo is first device to track glucose and ketones together</a> — a good example of the front end of the BINDER: a real, well-documented unmet clinical need (catching DKA before it becomes an emergency) driving both the device requirements and the choice of regulatory pathway (De Novo, since no predicate existed).</p>
+    </div>
+  </div>
+
   <div class="section-label">This Week at a Glance</div>
   <div class="glance-grid">
     <div class="glance-card cat-newproducts">
       <div class="glance-cat">New Products/Approvals</div>
       <ul>
-        <li><a href="#aletta-robotic-blood-draw">FDA clears first standalone robotic blood-draw device</a></li>
-        <li><a href="#abbott-amulet-360-ce-mark">Abbott's next-gen heart-stroke plug gets CE Mark</a></li>
+        <li><a href="#abbott-libre-duo-glucose-ketone-monitor">Abbott's Libre Duo is first device to track glucose and ketones together</a></li>
       </ul>
     </div>
     <div class="glance-card cat-tech">
       <div class="glance-cat">Tech Innovations</div>
       <ul>
-        <li><a href="#luffu-link-screen-free-wearable">Fitbit founders launch screen-free caregiver wearable</a></li>
-      </ul>
-    </div>
-    <div class="glance-card cat-clinical">
-      <div class="glance-cat">Clinical Advances</div>
-      <ul>
-        <li><a href="#envoy-acclaim-cochlear-milestone">Fully-implanted cochlear implant trial hits key milestone</a></li>
+        <li><a href="#philips-arpa-h-stroke-robot">Philips gets $33.7M from ARPA-H to build an autonomous stroke-clot robot</a></li>
+        <li><a href="#paradromics-bci-personal-devices">FDA lets Paradromics' brain implant connect to any personal device</a></li>
       </ul>
     </div>
     <div class="glance-card cat-regulatory">
       <div class="glance-cat">Regulatory Updates</div>
       <ul>
-        <li><a href="#cms-rapid-coverage-pathway">CMS publishes RAPID pathway for faster Medicare device coverage</a></li>
+        <li><a href="#abiomed-impella-controller-recall">FDA alert: Abiomed heart-pump controller tied to 3 deaths, 37 injuries</a></li>
+        <li><a href="#boston-scientific-enroute-recall-cyberattack">Boston Scientific hit by Class I stroke-device recall and cyberattack same week</a></li>
       </ul>
     </div>
     <div class="glance-card cat-market">
       <div class="glance-cat">Market Developments</div>
       <ul>
-        <li><a href="#boston-scientific-cyberattack">Boston Scientific hit with global cyberattack outage</a></li>
-        <li><a href="#irhythm-vitalconnect-acquisition">iRhythm buys VitalConnect for $287.5M</a></li>
+        <li><a href="#dexcom-abbott-medicare-cgm-coverage">CMS weighs Medicare CGM coverage for non-insulin type 2 diabetics</a></li>
       </ul>
     </div>
   </div>
 
   <div class="section-label">New Products/Approvals</div>
 
-  <div id="aletta-robotic-blood-draw" class="dev-card cat-newproducts">
-    <h3>FDA Authorizes First-of-Its-Kind Robotic Blood Draw Device</h3>
+  <div id="abbott-libre-duo-glucose-ketone-monitor" class="dev-card cat-newproducts">
+    <h3>FDA Authorizes Abbott's Libre Duo, First Combined Glucose-Ketone Wearable</h3>
     <div class="cat-pill">New Products/Approvals</div>
-    <p><strong>Core Development:</strong> On August 19, 2026, the FDA granted Vitestro's Aletta device de novo marketing authorization — the first standalone robot that draws blood from a patient's arm with no hands-on operator. It uses near-infrared light and Doppler ultrasound to find a usable vein, then handles the tourniquet, skin prep, needle insertion, tube changes, and bandaging on its own. One trained phlebotomist can supervise up to three Aletta units running in parallel.</p>
-    <p><strong>Context & Impact:</strong> Phlebotomy is a chronic staffing bottleneck — hard to automate because "find a good vein" has always needed a skilled human eye and hand. Aletta's clinical data showed success rates matching or beating trained phlebotomists, including in patients with difficult vein access and across skin tones (a population where automated vein-finding has historically struggled). If it scales, this changes outpatient lab-draw staffing math directly.</p>
-    <p><strong>Technical & Regulatory:</strong> Authorized via the de novo pathway (low-to-moderate risk, no prior predicate), which means FDA is simultaneously setting the special controls that will govern this new device type going forward — any competitor will now follow via 510(k) against Aletta as predicate. Cleared for adults in outpatient settings under phlebotomist oversight, not for unsupervised or pediatric use.</p>
-  </div>
-
-  <div id="abbott-amulet-360-ce-mark" class="dev-card cat-newproducts">
-    <h3>Abbott's Amulet 360 Left Atrial Appendage Occluder Receives CE Mark</h3>
-    <div class="cat-pill">New Products/Approvals</div>
-    <p><strong>Core Development:</strong> Abbott announced on August 27, 2026 that its next-generation Amulet 360 left atrial appendage (LAA) occluder received CE Mark in Europe. The device is a plug-like implant that seals off the LAA — the small heart pouch where most stroke-causing clots form in patients with atrial fibrillation — as an alternative to lifelong blood thinners.</p>
-    <p><strong>Context & Impact:</strong> LAA occlusion is a growing category as clinicians look to get AFib patients with bleeding risk off anticoagulants. Abbott competes here directly with Boston Scientific's Watchman line; incremental design generations (better sealing, easier delivery) are how each company tries to pull share in a market that's already well-established but still expanding as more physicians get trained on the procedure.</p>
-    <p><strong>Technical & Regulatory:</strong> Recent trial data cited by Abbott showed the device met its safety and effectiveness benchmarks. CE Mark covers the EU market; a US FDA submission and clearance would be a separate, later step — worth watching whether Abbott files a PMA supplement or a new PMA given the design changes.</p>
+    <span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> On August 25, 2026, the FDA granted Abbott's Libre Duo 10 Day Continuous Dual Glucose Ketone Monitoring System marketing authorization via the De Novo pathway — the first wearable in the U.S., and the first in the world, to continuously track both glucose and ketone levels in a single sensor. Worn on the arm, it samples interstitial fluid every minute and pushes readings to a smartphone app, alerting users when ketone levels climb toward concerning thresholds.</p>
+    <p><strong>Context & Impact:</strong> Existing ketone testing is a single-point-in-time check (a fingerstick or urine strip) — useful only if you happen to test at the right moment. This device turns that into a continuous trend line, so a patient or caregiver can catch a rising ketone trajectory before it becomes diabetic ketoacidosis (DKA), a life-threatening emergency and a leading reason people with type 1 diabetes end up in the ER. For a population that already wears a CGM, folding ketone sensing into the same patch removes a whole separate category of testing.</p>
+    <p><strong>Technical & Regulatory:</strong> The De Novo pathway is reserved for novel, low-to-moderate-risk device types with no existing predicate — FDA used it here to simultaneously set new special controls (labeling, performance testing, clinical evidence) that will become the template other ketone-sensing wearables get measured against. Next hurdles are real-world accuracy across a broader population and, per the Medicare coverage story below, payer reimbursement.</p>
   </div>
 
   <div class="section-label">Tech Innovations</div>
 
-  <div id="luffu-link-screen-free-wearable" class="dev-card cat-tech">
-    <h3>Fitbit Co-Founders Launch Luffu Link, a Screen-Free Caregiving Wearable</h3>
+  <div id="philips-arpa-h-stroke-robot" class="dev-card cat-tech">
+    <h3>Philips Details $33.7M ARPA-H-Funded Push Toward Autonomous Thrombectomy</h3>
     <div class="cat-pill">Tech Innovations</div>
-    <p><strong>Core Development:</strong> On August 25, 2026, Fitbit co-founders James Park and Eric Friedman launched Luffu Link — a $249.99 screenless wrist band built for family caregiving rather than individual fitness. It tracks activity, sleep, and heart rate, lets the wearer record symptoms, meds, meals, and mood by voice, and has built-in GPS, LTE, and a speaker so it can share location and contact trusted people even without a paired phone nearby.</p>
-    <p><strong>Context & Impact:</strong> This isn't a medical device in the regulatory sense, but it sits squarely in the consumer-health-meets-caregiving space that device companies watch closely — it's evidence that "jewelry-like," screenless form factors (already the direction Oura, Whoop, and Garmin are moving) are extending from individual fitness tracking into family/eldercare monitoring, a market with real clinical adjacency (fall risk, medication adherence, remote check-ins).</p>
-    <p><strong>Technical & Regulatory:</strong> Positioned as a consumer wellness product, not FDA-regulated — a design choice that avoids clearance timelines and claims restrictions but also means no clinical validation of its health tracking accuracy. Standalone cellular (LTE) connectivity, rather than phone-tethered Bluetooth, is the notable technical differentiator.</p>
+    <p><strong>Core Development:</strong> Philips announced details of a $33.7M ARPA-H (the HHS "DARPA for health") award to develop a robot capable of performing mechanical thrombectomy — the catheter-based clot-removal procedure for ischemic stroke — with increasing autonomy. It builds on Philips' existing Azurion image-guided platform plus a steerable catheter and machine-learning navigation trained through imitation learning, and is part of a larger $175.3M ARPA-H endovascular-robotics effort that also funds Siemens Healthineers.</p>
+    <p><strong>Context & Impact:</strong> Thrombectomy is extremely time-sensitive ("time is brain"), and only a fraction of hospitals have an interventionalist on-site around the clock to perform it — most stroke patients who'd benefit never get transferred fast enough. An autonomous or remotely-supervised robot could let a remote specialist guide (or eventually let software largely execute) the procedure at a hospital without one on staff, closing a real access gap rather than just speeding up an existing one.</p>
+    <p><strong>Technical & Regulatory:</strong> This is early-stage development funding, not a cleared product. Academic partners — Johns Hopkins on autonomous navigation, Boston University on the steerable catheter, Weill Cornell on clinical input — are building toward a validation test bed that Kitware is separately funded ($17.5M) to construct. Expect years of simulation, animal, and eventually human feasibility studies before anything resembling autonomous thrombectomy reaches an FDA submission; full autonomy in a brain-vasculature procedure will draw a very high evidentiary bar.</p>
   </div>
 
-  <div class="section-label">Clinical Advances</div>
-
-  <div id="envoy-acclaim-cochlear-milestone" class="dev-card cat-clinical">
-    <h3>Envoy Medical's Fully-Implanted Acclaim Cochlear Implant Clears Three-Month Follow-Up</h3>
-    <div class="cat-pill">Clinical Advances</div>
-    <p><strong>Core Development:</strong> Envoy Medical reported in August 2026 that all 56 patients enrolled in the pivotal trial of its Acclaim cochlear implant have completed three-month follow-up visits, following earlier confirmation that every participant had been successfully activated on the device. The company is now collecting data toward six-month and twelve-month endpoints.</p>
-    <p><strong>Context & Impact:</strong> Every cochlear implant on the market today has an external, visible microphone and processor. Acclaim is designed to be fully implanted, using a sensor that leverages the ear's own anatomy to pick up sound instead of an external mic — a meaningful quality-of-life difference (swimming, sleeping, no visible device) if it works as well as conventional implants.</p>
-    <p><strong>Technical & Regulatory:</strong> Envoy is pursuing FDA approval via a modular Premarket Approval (PMA) application, submitting the first of four modules already with the rest to follow on a rolling basis through Q2 2027. The primary efficacy endpoint is speech perception at 12 months — that's the data that will really determine whether this reaches market, since three-month completion is a trial-progress milestone, not an efficacy readout.</p>
+  <div id="paradromics-bci-personal-devices" class="dev-card cat-tech">
+    <h3>FDA Expands Device Compatibility for Paradromics' Connexus Brain-Computer Interface</h3>
+    <div class="cat-pill">Tech Innovations</div>
+    <p><strong>Core Development:</strong> The FDA authorized an expanded device-compatibility pathway for Paradromics' Connexus brain-computer interface (a Neuralink competitor), letting its Convey system connect to a patient's own laptop, tablet, or phone without a separate FDA submission for every new device added.</p>
+    <p><strong>Context & Impact:</strong> Most BCI trials to date have tethered patients to company-supplied, tightly controlled computing hardware — workable for a clinical trial, but not how anyone actually lives. Letting the same implant talk to whatever phone or tablet a patient already owns (or a wheelchair-mounted device, or a home tablet) is what turns a BCI from a lab demo into something usable day to day, and it signals FDA is willing to regulate the platform rather than re-review every hardware permutation.</p>
+    <p><strong>Technical & Regulatory:</strong> This is a compatibility-pathway clearance, not authorization of Connexus for general marketing — Paradromics' implant itself is still in early feasibility trials (FDA approved a speech-restoration study in late 2025). The precedent matters for neurotech broadly: as BCIs move toward continuous, high-bandwidth data exchange with consumer devices, regulators will need a framework for the whole ecosystem — implant, software, and whatever external hardware a patient plugs in — not just the implanted part.</p>
   </div>
 
   <div class="section-label">Regulatory Updates</div>
 
-  <div id="cms-rapid-coverage-pathway" class="dev-card cat-regulatory">
-    <h3>CMS Publishes Procedural Notice for RAPID Medicare Coverage Pathway</h3>
+  <div id="abiomed-impella-controller-recall" class="dev-card cat-regulatory">
+    <h3>FDA Early Alert: Abiomed's Automated Impella Controller Purge Flag Failures</h3>
     <div class="cat-pill">Regulatory Updates</div>
-    <p><strong>Core Development:</strong> CMS published its procedural notice for the RAPID (Regulatory Alignment for Predictable and Immediate Device) coverage pathway in the Federal Register on August 11, 2026, opening a public comment period through October 13, 2026. RAPID lets CMS issue a proposed national coverage determination the same day the FDA authorizes an eligible breakthrough device, with final coverage possible as soon as 60 days (Class II) or 90 days (other classes) after authorization.</p>
-    <p><strong>Context & Impact:</strong> Today, getting FDA clearance is only half the battle — many breakthrough devices sit for a year or more waiting on Medicare coverage decisions before hospitals will actually buy them. RAPID is meant to close that gap, but it's narrow: it only applies to Class II/III Breakthrough Devices with a Medicare-inclusive IDE study, and CMS is pausing new entries to its existing Transitional Coverage for Emerging Technologies (TCET) pathway to focus on it.</p>
-    <p><strong>Technical & Regulatory:</strong> Eligibility requires the sponsor to have built Medicare evidence needs into their IDE study design from the start — meaning companies need to coordinate with CMS well before their pivotal trial, not after. Given IDE study timelines, most observers don't expect the first same-day NCD under this pathway until well after 2026.</p>
+    <span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> On August 26, 2026, FDA issued an early alert on Abiomed's (J&J) Automated Impella Controller — the touchscreen interface clinicians use to run and monitor the Impella heart pump during cardiogenic shock and high-risk PCI support. A failed purge flag component can throw false "Purge Disc Disconnected" alarms, delaying or interrupting circulatory support; as of August 17, Abiomed had logged 37 serious injuries and 3 deaths tied to the issue.</p>
+    <p><strong>Context & Impact:</strong> Impella pumps support some of the sickest patients in the hospital — anyone whose heart can't move enough blood on its own during a procedure or a shock episode. A controller throwing a false alarm mid-support isn't a paperwork problem; it can mean momentarily losing mechanical circulatory support in a patient with no reserve to spare. FDA's guidance — reinsert the disc, fall back to a backup controller, keep using existing inventory while replacements are scheduled — is a stopgap that keeps units in hospitals rather than pulling them all at once, underscoring how central this device is to cath-lab and ICU workflows.</p>
+    <p><strong>Technical & Regulatory:</strong> This is an early alert rather than a full recall notice, letting facilities keep operating affected units under interim mitigations while Abiomed schedules a purge flag and retainer swap site by site. It's the second Impella-related purge-system issue in six months, following a February 2026 first-generation purge cassette alert — likely to draw added scrutiny to Abiomed's post-market quality processes on this product line.</p>
+  </div>
+
+  <div id="boston-scientific-enroute-recall-cyberattack" class="dev-card cat-regulatory">
+    <h3>Boston Scientific's ENROUTE Carotid Catheter Recalled as Cyberattack Disrupts Operations</h3>
+    <div class="cat-pill">Regulatory Updates</div>
+    <span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> Boston Scientific had a rough August 26: FDA classified a recall of its ENROUTE Transcarotid Neuroprotection System catheters as Class I — the most serious category — over reports that the catheter's arterial sheath tip can separate or partially separate during use. Separately, the company disclosed a cyberattack that knocked out order processing and shipping globally.</p>
+    <p><strong>Context & Impact:</strong> ENROUTE is used during transcarotid artery revascularization to catch debris and protect the brain while a surgeon opens a blocked carotid artery — it's the stroke-prevention step of a stroke-prevention procedure. A tip that can shear off and stay in the artery risks the exact complication (embolism, stroke, TIA) the device exists to prevent. Layer a cyberattack disrupting shipping on top of a recall pulling product out of hospitals, and you get a supply crunch for a procedure without many easy substitutes; the stock dropped on the combined news.</p>
+    <p><strong>Technical & Regulatory:</strong> FDA's notice updates a July 24 early alert to a full Class I recall, instructing facilities to stop use and distribution immediately, quarantine affected lots by number, and return stock to Boston Scientific; one serious injury had been reported as of July 9. Recall root-cause and CAPA (corrective/preventive action) work will run alongside the company's cybersecurity incident response — a reminder that quality and security incidents increasingly share the same manufacturing and logistics backbone.</p>
   </div>
 
   <div class="section-label">Market Developments</div>
 
-  <div id="boston-scientific-cyberattack" class="dev-card cat-market">
-    <h3>Boston Scientific Hit With Global Cyberattack, Operations Disrupted</h3>
+  <div id="dexcom-abbott-medicare-cgm-coverage" class="dev-card cat-market">
+    <h3>Dexcom, Abbott Await Medicare Decision on CGM Coverage Expansion</h3>
     <div class="cat-pill">Market Developments</div>
-    <p><strong>Core Development:</strong> Boston Scientific detected a cybersecurity incident on August 25, 2026, that took down networks across its global operations, including the systems it uses to process and ship customer orders. More than 7,000 staff across its three Irish manufacturing plants were sent home unable to work, and the company brought in outside cybersecurity experts to contain and investigate the breach.</p>
-    <p><strong>Context & Impact:</strong> For a device maker this size, a global order-processing outage isn't just an IT headache — it can directly delay device shipments to hospitals and cath labs that depend on just-in-time inventory for procedures. It's also the latest reminder that device manufacturers, not just hospitals, are high-value ransomware/cyberattack targets given how much of their supply chain now runs on networked systems.</p>
-    <p><strong>Technical & Regulatory:</strong> As of the reporting window, Boston Scientific had not disclosed the attack vector or a restoration timeline. Manufacturers in this position typically face parallel obligations: SEC disclosure rules for material cybersecurity incidents, and (if any product-quality or device-connectivity systems were touched) potential FDA cybersecurity reporting under its postmarket device cybersecurity guidance.</p>
-  </div>
-
-  <div id="irhythm-vitalconnect-acquisition" class="dev-card cat-market">
-    <h3>iRhythm to Acquire VitalConnect for $287.5M, Expanding Cardiac Monitoring Platform</h3>
-    <div class="cat-pill">Market Developments</div>
-    <p><strong>Core Development:</strong> iRhythm announced on August 5, 2026 a definitive agreement to acquire VitalConnect for $287.5 million ($237.5M cash, $50M stock), adding VitalConnect's FDA-cleared 4-in-1 wearable biosensor — which tracks up to 11 physiological parameters continuously for up to 30 days — to iRhythm's Zio cardiac monitoring platform. The deal is expected to close by year-end 2026.</p>
-    <p><strong>Context & Impact:</strong> iRhythm has built its business on ambulatory arrhythmia detection (Zio patches); VitalConnect's tech extends that reach into acute inpatient telemetry, post-surgical recovery, and hospital-to-home remote monitoring — settings iRhythm didn't previously cover well. It's a bet that continuous, multi-parameter monitoring across the entire care continuum (not just outpatient) is where cardiac monitoring reimbursement and demand are heading.</p>
-    <p><strong>Technical & Regulatory:</strong> Both companies' platforms are already FDA-cleared, which simplifies integration relative to a from-scratch build. iRhythm projects the deal will be accretive to revenue growth starting in 2027 while holding its adjusted EBITDA margin target — a signal it's pricing this as a genuine platform extension, not just a tuck-in.</p>
+    <p><strong>Core Development:</strong> CMS is expected to decide by year-end whether to expand Medicare coverage of continuous glucose monitors to type 2 diabetics who don't use insulin — today's coverage is generally limited to insulin-dependent patients or those with a history of serious hypoglycemia. Dexcom and Abbott both flagged the pending decision this week, citing a randomized controlled trial presented at the American Diabetes Association's Scientific Sessions showing improved glucose control from CGM use in this broader population.</p>
+    <p><strong>Context & Impact:</strong> This is a reimbursement story, but it's the kind that reshapes a market more than most product launches do. Dexcom estimates roughly 25 million Americans have non-insulin-treated type 2 diabetes, about half of them Medicare-age; Abbott's CEO called it "a multibillion-dollar opportunity" and put the newly-eligible Medicare population at around 10 million people. Coverage decisions, not FDA clearances, are usually the actual gate on whether a device reaches the patients who could benefit from it.</p>
+    <p><strong>Technical & Regulatory:</strong> This runs through CMS's National Coverage Determination process rather than FDA — a decision is expected before year-end 2026, with implementation targeted for mid-2027, so it's a signal to watch rather than a done deal. Both companies are already building out sales and distribution capacity in anticipation, which is itself a bet on the outcome.</p>
   </div>
 
   <div class="section-label">Emerging Trends</div>
   <div class="trends">
     <div class="trends-icon">💡</div>
     <div>
-      <p>Automation keeps creeping into tasks assumed to require a human hand — this week it was phlebotomy (Aletta), following the same pattern we've seen in surgical robotics and diagnostic imaging: identify a skilled-labor bottleneck, show equivalence-or-better performance data across diverse populations, then let the de novo/510(k) pathway do the rest. Expect more "boring but hard" clinical tasks to get this treatment before flashier applications do, simply because the regulatory and reimbursement case is easier to make.</p>
-      <p>On the business side, this was a reminder that medtech risk isn't only clinical or regulatory — it's operational. Boston Scientific's cyberattack shows how dependent even large, mature device makers are on networked order and manufacturing systems, while CMS's RAPID pathway and the iRhythm/VitalConnect deal both point toward the same underlying pressure: getting a device cleared is no longer the finish line, getting it paid for and integrated across the full care continuum is where the real competitive advantage is being built now.</p>
+      <p>Two of this week's biggest headlines were about things going wrong, not right — Boston Scientific's Class I carotid-catheter recall (compounded by a cyberattack) and Abiomed's Impella controller alert linked to three deaths landed the same week, on top of a February Impella purge-cassette issue. Post-market surveillance and field-action response are as much a part of medtech as the launch headlines, and increasingly, physical-device quality problems and cybersecurity incidents are showing up on the same earnings call.</p>
+      <p>On the innovation side, this week's tech stories were both about expanding what a device can connect to, not just what it can do in isolation — Paradromics' BCI getting cleared to talk to any personal device, and Philips' ARPA-H-funded push toward remote/autonomous thrombectomy robots. Both are early-stage (a compatibility pathway and a research grant, not cleared products), but both point the same direction: devices that used to be closed, single-purpose clinical tools are being redesigned as platforms meant to plug into a patient's existing life or a remote specialist's expertise.</p>
+      <p>And Abbott's Libre Duo plus the CMS coverage story are two sides of the same diabetes-tech push: better sensing only matters at scale if payers actually cover it, and this week both moved — a newly authorized device, and a multibillion-dollar coverage decision that could roughly double the CGM-eligible Medicare population. It was a comparatively quiet week for clinical trial readouts specifically — no major pivotal-trial data landed — but an active one on regulatory, safety, and reimbursement fronts.</p>
     </div>
   </div>
 
