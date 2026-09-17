@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Device Intelligence Digest — 2026-09-17</title>
+<style>
+  :root {
+    --teal: #0d9488; --teal-dark: #0f766e; --teal-faint: #f0fdfa;
+    --purple: #7c3aed; --purple-faint: #f5f3ff;
+    --blue: #2563eb; --blue-faint: #eff6ff;
+    --amber: #d97706; --amber-faint: #fffbeb;
+    --red: #dc2626; --red-faint: #fef2f2;
+    --slate: #0f172a; --slate-700: #334155; --slate-500: #64748b;
+    --slate-300: #cbd5e1; --slate-100: #f1f5f9; --slate-50: #f8fafc; --white: #fff;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--slate-100); color: var(--slate); margin:0; line-height: 1.65; font-size: 17px; }
+  header { background: var(--slate); color: #fff; padding: 16px 32px; display: flex; align-items: center; gap: 16px; }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+  .header-text .course { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-300); }
+  .header-text .suite { font-size: 1.22rem; font-weight: 800; color: #fff; }
+  .header-spacer { flex: 1; }
+  .header-badge { font-size: .8rem; font-weight: 700; padding: 4px 12px; background: var(--teal); color: #fff; border-radius: 999px; letter-spacing: .06em; text-transform: uppercase; }
+
+  .hero { background: linear-gradient(135deg, var(--slate) 0%, #1e3a5f 100%); color: #fff; padding: 56px 32px 48px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(13,148,136,.18) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(13,148,136,.12) 0%, transparent 60%); }
+  .hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
+  .hero-eyebrow { font-size: .82rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #99f6e4; margin-bottom: 14px; }
+  .hero h1 { font-size: 2.3rem; font-weight: 900; line-height: 1.15; margin: 0 0 16px; color: #fff; }
+  .hero p { font-size: 1.05rem; color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 28px; }
+  .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .hero-tag { font-size: .85rem; font-weight: 600; padding: 5px 14px; border-radius: 999px; letter-spacing: .02em; border: 1px solid rgba(255,255,255,.25); }
+
+  .main { max-width: 900px; margin: 0 auto; padding: 40px 24px 60px; }
+  .section-label { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-500); margin: 40px 0 16px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content:''; flex:1; height:1px; background: var(--slate-300); }
+  .section-label:first-of-type { margin-top: 0; }
+
+  .class-connect { background: linear-gradient(135deg, var(--slate) 0%, #0f3d38 100%); color:#fff; border-radius: 14px; padding: 28px 28px 24px; margin-bottom: 8px; }
+  .class-connect-eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#5eead4; margin-bottom:10px; }
+  .class-connect h2 { margin:0 0 10px; font-size:1.45rem; font-weight:800; color:#fff; }
+  .class-connect-blurb { font-size:1.02rem; color:rgba(255,255,255,.82); margin:0 0 18px; max-width:640px; }
+  .class-connect-item { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:10px; padding:14px 16px; margin-bottom:10px; }
+  .class-connect-item:last-child { margin-bottom:0; }
+  .class-connect-item p { margin:0; font-size:1rem; color:rgba(255,255,255,.9); }
+  .class-connect-item a { color:#5eead4; font-weight:700; text-decoration:none; }
+  .class-connect-item a:hover { text-decoration:underline; }
+  .class-connect-note { font-size:.85rem; color:rgba(255,255,255,.55); margin-top:14px; }
+
+  .glance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .glance-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 16px 18px; border-top: 3px solid var(--cat-color, var(--teal)); }
+  .glance-cat { font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--cat-color, var(--teal)); margin-bottom: 8px; }
+  .glance-card ul { margin: 0; padding-left: 18px; font-size: .97rem; color: var(--slate-700); }
+  .glance-card li { margin-bottom: 6px; }
+  .glance-card a { color: var(--slate-700); text-decoration: none; }
+  .glance-card a:hover { color: var(--cat-color, var(--teal)); text-decoration: underline; }
+
+  .dev-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; border-top: 3px solid var(--cat-color, var(--teal)); scroll-margin-top: 20px; }
+  .dev-card h3 { margin: 0 0 8px; font-size: 1.28rem; font-weight: 800; }
+  .cat-pill { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .03em; padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; background: var(--cat-faint, var(--teal-faint)); color: var(--cat-color, var(--teal)); }
+  .dev-card p { font-size: 1.02rem; color: var(--slate-700); margin: 0 0 10px; }
+  .dev-card p:last-child { margin-bottom: 0; }
+  .dev-card p strong { color: var(--slate); }
+  .class-connect-tag { display:inline-block; font-size:.76rem; font-weight:700; letter-spacing:.03em; padding:3px 10px; border-radius:999px; margin-left:8px; background:var(--teal-faint); color:var(--teal-dark); vertical-align:middle; }
+
+  .cat-newproducts { --cat-color: var(--teal); --cat-faint: var(--teal-faint); }
+  .cat-clinical     { --cat-color: var(--purple); --cat-faint: var(--purple-faint); }
+  .cat-tech         { --cat-color: var(--blue); --cat-faint: var(--blue-faint); }
+  .cat-regulatory   { --cat-color: var(--amber); --cat-faint: var(--amber-faint); }
+  .cat-market       { --cat-color: var(--red); --cat-faint: var(--red-faint); }
+
+  .trends { background: var(--white); border: 1px solid var(--slate-300); border-radius: 10px; padding: 22px 24px; display: flex; gap: 14px; }
+  .trends-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .trends p { font-size: 1.02rem; color: var(--slate-700); margin: 0 0 12px; }
+  .trends p:last-child { margin-bottom: 0; }
+
+  footer { text-align: center; padding: 24px; font-size: .9rem; color: var(--slate-500); border-top: 1px solid var(--slate-300); background: var(--white); margin-top: 20px; }
+  footer .archive-links a { color: var(--teal); text-decoration: none; margin: 0 4px; }
+  footer .archive-links a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) { .hero h1 { font-size: 1.7rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <svg viewBox="0 0 36 36" width="36" height="36" fill="none" aria-label="logo">
+      <rect width="36" height="36" rx="8" fill="#0d9488"/>
+      <path d="M5 18h5l3-7 5 14 4-10 3 3h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="header-text">
+      <div class="course">Weekly Briefing</div>
+      <div class="suite">Medical Device Intelligence</div>
+    </div>
+  </div>
+  <div class="header-spacer"></div>
+  <span class="header-badge">Week of Sept 17, 2026</span>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Medical Device &amp; Health Tech</div>
+    <h1>This Week in Medical Devices</h1>
+    <p>The most significant device developments from the past 7 days — new approvals, clinical results, tech launches, regulatory moves, and market news, with the practical "why it matters" for each.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">1 New Product/Approval</span>
+      <span class="hero-tag">1 Tech Innovation</span>
+      <span class="hero-tag">2 Regulatory Updates</span>
+      <span class="hero-tag">2 Market Developments</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="class-connect">
+    <div class="class-connect-eyebrow">BE695 Class Connection · Wednesday, September 16, 2026</div>
+    <h2>Stakeholder Analysis, Empathy Maps</h2>
+    <p class="class-connect-blurb">Class 4 covered "cycle of care" process mapping and stakeholder categorization — initiator, influencer, gatekeeper, decider, purchaser, user, saboteur — including the distinction between user, decider, and payer, then Empathy Maps as a tool to synthesize observation and interview data before writing need statements.</p>
+    <div class="class-connect-item">
+      <p><a href="#cms-access-pilot-expansion">CMS expands digital health payment pilot to cover 75% of Medicare</a> — a real-world illustration of the user/decider/payer split from class: CMS and the payers (CVS Health, Cigna, UnitedHealthcare) are the purchaser/decider, clinicians are the influencer, and patients are the user, and ACCESS exists specifically because those three roles have historically wanted different things. Good example of a program designed around that mismatch rather than around the technology.</p>
+    </div>
+    <div class="class-connect-item">
+      <p>FDA's digital-measures white paper on wearables in clinical trials (published Aug 21, 2026; <a href="https://www.medtechdive.com/news/how-can-wearables-be-used-in-clinical-trials-fda-outlines-best-practices/828512/">MedTech Dive</a>) — no anchor, standalone citation — states that a wearable measurement is only meaningful if it incorporates "direct input from patients to help identify the aspects of health that matter most." That's the Empathy Map principle in regulatory language: a good example of an institution insisting need-finding happen before instrumentation, not after.</p>
+    </div>
+  </div>
+
+  <div class="section-label">This Week at a Glance</div>
+  <div class="glance-grid">
+    <div class="glance-card cat-newproducts">
+      <div class="glance-cat">New Products/Approvals</div>
+      <ul>
+        <li><a href="#medtronic-ligasure-hugo-clearance">Medtronic's Hugo robot gets FDA nod for vessel-sealing tool</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-tech">
+      <div class="glance-cat">Tech Innovations</div>
+      <ul>
+        <li><a href="#mayo-thermo-fisher-precure">Mayo Clinic and Thermo Fisher launch Precure to catch disease earlier</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-regulatory">
+      <div class="glance-cat">Regulatory Updates</div>
+      <ul>
+        <li><a href="#cms-access-pilot-expansion">CMS expands digital health payment pilot to cover 75% of Medicare</a></li>
+        <li><a href="#china-ai-bci-device-standard">China issues world's first standard for AI-based brain-computer interfaces</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-market">
+      <div class="glance-cat">Market Developments</div>
+      <ul>
+        <li><a href="#jj-depuy-synthes-apollo-talks">J&amp;J reportedly in talks to sell DePuy Synthes to Apollo for $20B</a></li>
+        <li><a href="#jj-laminar-jaguar-laa-sale">J&amp;J exits Laminar heart-device program after failed pivotal trial</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">New Products/Approvals</div>
+
+  <div id="medtronic-ligasure-hugo-clearance" class="dev-card cat-newproducts">
+    <h3>Medtronic Wins FDA Clearance for LigaSure RAS Maryland Vessel-Sealing Instrument on Hugo Robot</h3>
+    <div class="cat-pill">New Products/Approvals</div>
+    <p><strong>Core Development:</strong> On September 16, Medtronic announced FDA clearance of its LigaSure RAS Maryland instrument, a vessel-sealing and dissecting tool built for the Hugo RAS surgical robot. It's an accessory instrument, not a new robot — it lets surgeons seal blood vessels and tissue during robotic procedures (urology, gynecology, general surgery) without swapping to a separate energy device mid-case.</p>
+    <p><strong>Context &amp; Impact:</strong> Vessel sealing is one of the most-used tools in laparoscopic and robotic surgery, and Intuitive's da Vinci platform has long had its own version; this clearance closes a capability gap that made Hugo feel less complete to surgeons doing complex dissection. For a hospital choosing between robotic platforms, instrument completeness — not just the arms — drives the decision, so this narrows part of Intuitive's competitive edge as Medtronic builds out Hugo's U.S. instrument ecosystem.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Cleared via the FDA's 510(k) pathway as an accessory to the already-cleared Hugo RAS system, leaning on years of safety data from Medtronic's existing non-robotic LigaSure vessel-sealing technology. The bigger challenge ahead is breadth: Hugo needs a wide enough cleared procedure list and instrument set before hospitals treat it as a genuine da Vinci alternative rather than a niche system.</p>
+  </div>
+
+  <div class="section-label">Tech Innovations</div>
+
+  <div id="mayo-thermo-fisher-precure" class="dev-card cat-tech">
+    <h3>Mayo Clinic and Thermo Fisher Scientific Launch Precure, LLC for Pre-Symptomatic Disease Detection</h3>
+    <div class="cat-pill">Tech Innovations</div>
+    <p><strong>Core Development:</strong> On September 15, Mayo Clinic (majority owner) and Thermo Fisher Scientific (minority owner) launched Precure, LLC, a joint venture combining Mayo's roughly one million biospecimens and longitudinal clinical data with Thermo Fisher's proteomics platforms (Olink Explore HT, Orbitrap mass spectrometry) and AI-driven analytics. The goal is to find molecular signals of cancer, cardiometabolic disease, and neurological and immune-mediated conditions before symptoms appear.</p>
+    <p><strong>Context &amp; Impact:</strong> This fits a growing pattern of large health systems monetizing their data and biospecimen depth by partnering with instrument makers who bring the proteomics/genomics horsepower they lack in-house. The output isn't a device itself but the evidence base future diagnostics will be built on — expect licensing deals or spinout products downstream rather than a near-term FDA submission from Precure directly.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Multi-omics integration (proteomic, genomic, and clinical data) at population scale is technically demanding — harmonizing and validating AI models across a million biospecimens is itself a multi-year effort, and any diagnostic that eventually emerges would face its own separate regulatory pathway (likely LDT or IVD) well after this research phase concludes.</p>
+  </div>
+
+  <div class="section-label">Regulatory Updates</div>
+
+  <div id="cms-access-pilot-expansion" class="dev-card cat-regulatory">
+    <h3>CMS Expands ACCESS Model, Adding Four Chronic Conditions to Digital Health Payment Pilot</h3>
+    <div class="cat-pill">Regulatory Updates</div><span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> CMS expanded its ACCESS (Advancing Chronic Care with Effective, Scalable Solutions) model on September 16 — a pilot that pays clinicians and digital health companies based on patient outcomes when approved digital tools are used to manage chronic disease. The expansion adds heart failure, COPD, substance use disorder, and tobacco cessation to the original condition list, plus extended musculoskeletal support, bringing covered conditions to roughly 75% of Medicare beneficiaries. Over 160 organizations participate, including Dexcom, Headspace, and Welldoc.</p>
+    <p><strong>Context &amp; Impact:</strong> This is CMS tackling medtech's oldest problem — FDA clearance doesn't guarantee anyone gets paid to use the device. ACCESS ties payment to health outcomes rather than a flat technology fee, extending value-based care principles specifically to digital and wearable tools. Major payers (CVS Health, Cigna, UnitedHealthcare) have also signed on, suggesting private insurers may follow CMS's reimbursement model rather than build their own.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> ACCESS runs alongside FDA's TEMPO pilot, which lets manufacturers collect real-world evidence from devices not yet FDA-authorized — so a company could plausibly generate outcomes and reimbursement evidence at the same time. It's a 10-year initiative currently limited to traditional (non-Medicare Advantage) Medicare, so scope is still narrower than the full 65-and-over population.</p>
+  </div>
+
+  <div id="china-ai-bci-device-standard" class="dev-card cat-regulatory">
+    <h3>China's NMPA Approves First National Product Standard for AI-Processed Brain-Computer Interface Devices</h3>
+    <div class="cat-pill">Regulatory Updates</div>
+    <p><strong>Core Development:</strong> China's National Medical Products Administration — its FDA equivalent — approved, on September 14, what it calls the world's first product standard specifically for brain-computer interface (BCI) devices that use AI to interpret brainwave data. The standard sets technical requirements for the entire data pipeline underlying these devices: collection, processing, labeling, storage, and access.</p>
+    <p><strong>Context &amp; Impact:</strong> BCI devices — for paralysis, ALS, epilepsy monitoring, and beyond — are advancing faster than most regulators' frameworks; the U.S. and EU are both still working out bespoke pathways case by case (see Neuralink, Synchron). China moving first to standardize data-quality requirements is notable both as a regulatory-leadership signal and practically: a company with a China-compliant data pipeline may find it easier to run multi-region trials.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The standard targets a real technical bottleneck — BCI algorithms are only as good as the brainwave datasets that train them, and inconsistent labeling and collection practices across research groups have made results hard to compare or reproduce. It takes effect September 1, 2027, giving industry a compliance runway; it was approved through an expedited procedure, underscoring how seriously China's regulator is treating the AI-BCI category.</p>
+  </div>
+
+  <div class="section-label">Market Developments</div>
+
+  <div id="jj-depuy-synthes-apollo-talks" class="dev-card cat-market">
+    <h3>Apollo Global in Talks to Acquire J&amp;J's DePuy Synthes Orthopedics Unit for ~$20 Billion</h3>
+    <div class="cat-pill">Market Developments</div>
+    <p><strong>Core Development:</strong> Bloomberg reported on September 14 that private equity firm Apollo Global Management is in talks to buy J&amp;J's DePuy Synthes orthopedics business — hip and knee implants plus trauma instrumentation — for roughly $20 billion. The deal is preliminary: J&amp;J is also weighing spinning DePuy Synthes off as an independent public company, and other private equity firms have reportedly circled it too.</p>
+    <p><strong>Context &amp; Impact:</strong> DePuy Synthes does about $9.3 billion a year in sales and would instantly be the largest standalone orthopedics company if it separates. J&amp;J signaled last October that it's shedding businesses it called "a steady grower, but not outperforming" to focus on higher-growth segments like robotics and cardiovascular; this is the clearest sign yet of which business that description applies to. It's a live case study in a company sorting its device portfolio by growth rate rather than clinical importance.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> No devices or clearances are involved yet — this is a corporate ownership question. If it closes, expect the usual private-equity playbook (debt load, cost discipline, a possible re-IPO in a few years) and antitrust review given DePuy Synthes' scale, though a PE buyer typically draws less competitive-overlap scrutiny than a strategic buyer like Stryker or Zimmer Biomet would.</p>
+  </div>
+
+  <div id="jj-laminar-jaguar-laa-sale" class="dev-card cat-market">
+    <h3>J&amp;J Sells Laminar Left Atrial Appendage Closure Assets to New Startup Jaguar LAA</h3>
+    <div class="cat-pill">Market Developments</div>
+    <p><strong>Core Development:</strong> J&amp;J sold its Laminar left atrial appendage (LAA) closure program — bought for $400 million in 2023 — to newly formed Jaguar LAA, a startup backed by Santé Ventures and staffed by Laminar's own former management team. Terms weren't disclosed. LAA closure devices reduce stroke risk in atrial fibrillation patients by sealing off the heart pouch where clots tend to form, a space Boston Scientific's Watchman currently dominates.</p>
+    <p><strong>Context &amp; Impact:</strong> J&amp;J's pivotal trial for Laminar was suspended in mid-2025 after the device showed "unwrapping" post-implant with clinically significant leaks — a genuine safety signal, not just a portfolio decision. Selling a technically troubled asset to a startup run by the people who built it is a common way for a large company to cut its losses while giving the technology, and the team that understands it best, a shot at fixing the problem outside corporate overhead.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The core engineering problem — keeping a self-expanding implant properly seated against a highly variable anatomical structure — is exactly why LAA closure devices go through extended IDE trials before approval. Jaguar LAA will likely need to redesign around the leak/unwrapping failure mode and restart clinical work, so any FDA submission is years away.</p>
+  </div>
+
+  <div class="section-label">Emerging Trends</div>
+  <div class="trends">
+    <div class="trends-icon">💡</div>
+    <div>
+      <p>It was a quiet week for new clinical evidence and a busy one for corporate triage. Two of this week's biggest stories are both J&amp;J divesting device businesses in the same seven days — DePuy Synthes potentially for $20B, Laminar for an undisclosed sum — which together read less like coincidence and more like a company actively executing the portfolio pruning it announced last fall. One divestiture is about growth rate (ortho is steady but not exciting to investors); the other is about a technical failure the company decided wasn't worth fixing in-house. Both outcomes land on the same word — "exit" — for very different reasons, which is worth noticing: a device can lose its place in a corporate portfolio for business reasons that have nothing to do with whether it works, or for engineering reasons that have everything to do with it.</p>
+      <p>Separately, two regulators on opposite sides of the world moved this week to formalize the infrastructure around AI-native device categories before those categories are fully mature: CMS built a payment model around digital chronic-care tools, and China's NMPA built a data-quality standard around AI-interpreted brain signals. Neither approved a specific new device — both regulators are instead building the plumbing (how AI tools get paid for, how their training data has to be documented) that the next wave of approvals will run through. Mayo Clinic and Thermo Fisher's Precure venture points at the same underlying shift from a different angle: large health systems are starting to treat their own patient data as an asset to be partnered around, not just a byproduct of care. None of this week's headlines were about a single new device working better — they were about the surrounding systems (payment, standards, data) that determine whether devices that already work actually reach patients at scale.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Generated automatically. Last updated: Sept 17, 2026.
+  <div class="archive-links">Past editions: <a href="archive/2026-09-17.html">Sept 17, 2026</a> <a href="archive/2026-09-11.html">Sept 11, 2026</a> <a href="archive/2026-09-04.html">Sept 4, 2026</a> <a href="archive/2026-08-28.html">Aug 28, 2026</a> <a href="archive/2026-08-21.html">Aug 21, 2026</a> <a href="archive/2026-08-14.html">Aug 14, 2026</a> <a href="archive/2026-08-13.html">Aug 13, 2026</a> <a href="archive/2026-07-24.html">Jul 24, 2026</a> <a href="archive/2026-07-17.html">Jul 17, 2026</a> <a href="archive/2026-07-10.html">Jul 10, 2026</a> <a href="archive/2026-07-07.html">Jul 7, 2026</a></div>
+</footer>
+
+</body>
+</html>
