@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Device Intelligence — 2026-09-24</title>
+<style>
+  :root {
+    --teal: #0d9488; --teal-dark: #0f766e; --teal-faint: #f0fdfa;
+    --purple: #7c3aed; --purple-faint: #f5f3ff;
+    --blue: #2563eb; --blue-faint: #eff6ff;
+    --amber: #d97706; --amber-faint: #fffbeb;
+    --red: #dc2626; --red-faint: #fef2f2;
+    --slate: #0f172a; --slate-700: #334155; --slate-500: #64748b;
+    --slate-300: #cbd5e1; --slate-100: #f1f5f9; --slate-50: #f8fafc; --white: #fff;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--slate-100); color: var(--slate); margin:0; line-height: 1.65; font-size: 17px; }
+  header { background: var(--slate); color: #fff; padding: 16px 32px; display: flex; align-items: center; gap: 16px; }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+  .header-text .course { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-300); }
+  .header-text .suite { font-size: 1.22rem; font-weight: 800; color: #fff; }
+  .header-spacer { flex: 1; }
+  .header-badge { font-size: .8rem; font-weight: 700; padding: 4px 12px; background: var(--teal); color: #fff; border-radius: 999px; letter-spacing: .06em; text-transform: uppercase; }
+
+  .hero { background: linear-gradient(135deg, var(--slate) 0%, #1e3a5f 100%); color: #fff; padding: 56px 32px 48px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(13,148,136,.18) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(13,148,136,.12) 0%, transparent 60%); }
+  .hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
+  .hero-eyebrow { font-size: .82rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #99f6e4; margin-bottom: 14px; }
+  .hero h1 { font-size: 2.3rem; font-weight: 900; line-height: 1.15; margin: 0 0 16px; color: #fff; }
+  .hero p { font-size: 1.05rem; color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 28px; }
+  .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .hero-tag { font-size: .85rem; font-weight: 600; padding: 5px 14px; border-radius: 999px; letter-spacing: .02em; border: 1px solid rgba(255,255,255,.25); }
+
+  .main { max-width: 900px; margin: 0 auto; padding: 40px 24px 60px; }
+  .section-label { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-500); margin: 40px 0 16px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content:''; flex:1; height:1px; background: var(--slate-300); }
+  .section-label:first-of-type { margin-top: 0; }
+
+  .class-connect { background: linear-gradient(135deg, var(--slate) 0%, #0f3d38 100%); color:#fff; border-radius: 14px; padding: 28px 28px 24px; margin-bottom: 8px; }
+  .class-connect-eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#5eead4; margin-bottom:10px; }
+  .class-connect h2 { margin:0 0 10px; font-size:1.45rem; font-weight:800; color:#fff; }
+  .class-connect-blurb { font-size:1.02rem; color:rgba(255,255,255,.82); margin:0 0 18px; max-width:640px; }
+  .class-connect-item { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:10px; padding:14px 16px; margin-bottom:10px; }
+  .class-connect-item:last-child { margin-bottom:0; }
+  .class-connect-item p { margin:0; font-size:1rem; color:rgba(255,255,255,.9); }
+  .class-connect-item a { color:#5eead4; font-weight:700; text-decoration:none; }
+  .class-connect-item a:hover { text-decoration:underline; }
+  .class-connect-note { font-size:.85rem; color:rgba(255,255,255,.55); margin-top:14px; }
+
+  .glance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .glance-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 16px 18px; border-top: 3px solid var(--cat-color, var(--teal)); }
+  .glance-cat { font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--cat-color, var(--teal)); margin-bottom: 8px; }
+  .glance-card ul { margin: 0; padding-left: 18px; font-size: .97rem; color: var(--slate-700); }
+  .glance-card li { margin-bottom: 6px; }
+  .glance-card a { color: var(--slate-700); text-decoration: none; }
+  .glance-card a:hover { color: var(--cat-color, var(--teal)); text-decoration: underline; }
+
+  .dev-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; border-top: 3px solid var(--cat-color, var(--teal)); scroll-margin-top: 20px; }
+  .dev-card h3 { margin: 0 0 8px; font-size: 1.28rem; font-weight: 800; }
+  .cat-pill { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .03em; padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; background: var(--cat-faint, var(--teal-faint)); color: var(--cat-color, var(--teal)); }
+  .dev-card p { font-size: 1.02rem; color: var(--slate-700); margin: 0 0 10px; }
+  .dev-card p:last-child { margin-bottom: 0; }
+  .dev-card p strong { color: var(--slate); }
+  .class-connect-tag { display:inline-block; font-size:.76rem; font-weight:700; letter-spacing:.03em; padding:3px 10px; border-radius:999px; margin-left:8px; background:var(--teal-faint); color:var(--teal-dark); vertical-align:middle; }
+
+  .cat-newproducts { --cat-color: var(--teal); --cat-faint: var(--teal-faint); }
+  .cat-clinical     { --cat-color: var(--purple); --cat-faint: var(--purple-faint); }
+  .cat-tech         { --cat-color: var(--blue); --cat-faint: var(--blue-faint); }
+  .cat-regulatory   { --cat-color: var(--amber); --cat-faint: var(--amber-faint); }
+  .cat-market       { --cat-color: var(--red); --cat-faint: var(--red-faint); }
+
+  .trends { background: var(--white); border: 1px solid var(--slate-300); border-radius: 10px; padding: 22px 24px; display: flex; gap: 14px; }
+  .trends-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .trends p { font-size: 1.02rem; color: var(--slate-700); margin: 0 0 12px; }
+  .trends p:last-child { margin-bottom: 0; }
+
+  footer { text-align: center; padding: 24px; font-size: .9rem; color: var(--slate-500); border-top: 1px solid var(--slate-300); background: var(--white); margin-top: 20px; }
+  footer .archive-links a { color: var(--teal); text-decoration: none; margin: 0 4px; }
+  footer .archive-links a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) { .hero h1 { font-size: 1.7rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <svg viewBox="0 0 36 36" width="36" height="36" fill="none" aria-label="logo">
+      <rect width="36" height="36" rx="8" fill="#0d9488"/>
+      <path d="M5 18h5l3-7 5 14 4-10 3 3h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="header-text">
+      <div class="course">Weekly Briefing</div>
+      <div class="suite">Medical Device Intelligence</div>
+    </div>
+  </div>
+  <div class="header-spacer"></div>
+  <span class="header-badge">Week of Sept 24, 2026</span>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Medical Device &amp; Health Tech</div>
+    <h1>This Week in Medical Devices</h1>
+    <p>The most significant device developments from the past 7 days — new approvals, clinical results, tech launches, regulatory moves, and market news, with the practical "why it matters" for each.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">1 New Product/Approval</span>
+      <span class="hero-tag">3 Tech Innovations</span>
+      <span class="hero-tag">1 Clinical Advance</span>
+      <span class="hero-tag">2 Regulatory Updates</span>
+      <span class="hero-tag">1 Market Development</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="class-connect">
+    <div class="class-connect-eyebrow">BE695 Class Connection · Wednesday, September 23, 2026</div>
+    <h2>Storyboard Part 1: The Current Experience</h2>
+    <p class="class-connect-blurb">This class was a hands-on storyboarding workshop: capturing the rough, "non-submersible" key moments of a clinical procedure as it happens today, before ever sketching what the new, redesigned experience should look like.</p>
+    <div class="class-connect-item">
+      <p><a href="#depuy-synthes-maxframe-autostrut">DePuy Synthes' automated fracture-fixation frame</a> — good example of the concept: the "current experience" of a ring fixator is a patient or caregiver hand-turning six struts by precise amounts for months, with clinic visits to check progress. Mapping that painful reality is exactly what justifies the "new experience" DePuy storyboarded here — automated, Bluetooth-adjusted, remotely monitored.</p>
+    </div>
+    <div class="class-connect-item">
+      <p><a href="#emanate-perio-pods-clearance">Emanate Biomedical's Perio PODS</a> — a smaller-scale version of the same move: instead of sending patients home after a deep cleaning with generic instructions, the device is custom-fit from a scan of the patient's own mouth, redesigning the at-home "current experience" of healing around what patients actually go through.</p>
+    </div>
+  </div>
+
+  <div class="section-label">This Week at a Glance</div>
+  <div class="glance-grid">
+    <div class="glance-card cat-newproducts">
+      <div class="glance-cat">New Products/Approvals</div>
+      <ul>
+        <li><a href="#emanate-perio-pods-clearance">FDA clears at-home dressing for gum disease treatment</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-tech">
+      <div class="glance-cat">Tech Innovations</div>
+      <ul>
+        <li><a href="#depuy-synthes-maxframe-autostrut">DePuy Synthes automates fracture-fixation strut adjustments</a></li>
+        <li><a href="#cognita-ai-radiology-jury">FDA funds AI "jury" method to grade AI radiology reports</a></li>
+        <li><a href="#syensqo-bluebridge-sternal-spacer">New material keeps open-chest cardiac patients stable between surgeries</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-clinical">
+      <div class="glance-cat">Clinical Advances</div>
+      <ul>
+        <li><a href="#corcym-memo-4d-curve">Corcym implants first US patient with new mitral repair ring</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-regulatory">
+      <div class="glance-cat">Regulatory Updates</div>
+      <ul>
+        <li><a href="#medicare-tavr-asymptomatic-coverage">Medicare will now pay for TAVR before symptoms appear</a></li>
+        <li><a href="#adaptyx-cortisol-breakthrough-device">Wearable cortisol monitor gets FDA breakthrough status</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-market">
+      <div class="glance-cat">Market Developments</div>
+      <ul>
+        <li><a href="#medtronic-raises-cardiovascular-guidance">Medtronic raises 2027 guidance on cardiovascular device boom</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">New Products/Approvals</div>
+
+  <div id="emanate-perio-pods-clearance" class="dev-card cat-newproducts">
+    <h3>FDA Clears Emanate Biomedical's Perio PODS At-Home Dental Dressing for Non-Surgical Periodontal Care</h3>
+    <div class="cat-pill">New Products/Approvals</div>
+    <span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> The FDA granted 510(k) clearance to Emanate Biomedical's Perio PODS — single-use trays custom-fit to a patient's teeth from a dental scan, preloaded with a hydrogel dressing, worn 30 minutes twice a day for up to 15 days after a deep cleaning (scaling and root planing) to protect healing gum tissue.</p>
+    <p><strong>Context &amp; Impact:</strong> Periodontal disease is common, and non-surgical treatment usually leaves patients managing irritation and healing on their own between office visits — a personalized, at-home wound dressing is a low-tech but meaningful upgrade over "rinse and wait." A 45-patient randomized trial at the ADA's Forsyth Institute showed real reductions in gum inflammation and pocket depth, and a larger multicenter trial is already underway.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Cleared via 510(k) as substantially equivalent to existing periodontal wound-care devices. Emanate is scaling manufacturing ahead of a phased 2027 commercial rollout, so this is a clearance milestone, not yet a product patients can get today.</p>
+  </div>
+
+  <div class="section-label">Tech Innovations</div>
+
+  <div id="depuy-synthes-maxframe-autostrut" class="dev-card cat-tech">
+    <h3>DePuy Synthes Launches Maxframe Autostrut, a Bluetooth-Connected Automated Fracture Fixation System</h3>
+    <div class="cat-pill">Tech Innovations</div>
+    <span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> DePuy Synthes unveiled the Maxframe Autostrut with Bluetooth Multi-Axial Correction System at the Orthopaedic Trauma Association's annual meeting — a hexapod ring fixator that automates the tiny daily strut adjustments patients or caregivers previously had to make by hand, over weeks or months, to correct a fracture or limb deformity.</p>
+    <p><strong>Context &amp; Impact:</strong> Traditional ring fixators put the burden of gradual bone correction squarely on the patient: someone has to physically turn six struts by precise, error-prone amounts, day after day. Automating that — with Bluetooth connectivity letting the surgeon monitor progress and adjust the correction plan remotely, without an office visit — is a direct fix for one of the most burdensome parts of limb reconstruction, for patients and clinics alike.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The system pairs digital treatment planning with a mobile app for patient-facing progress updates and remote correction changes. Coverage of the launch didn't specify an FDA clearance pathway or date — worth confirming regulatory status before assuming it's already market-cleared.</p>
+  </div>
+
+  <div id="cognita-ai-radiology-jury" class="dev-card cat-tech">
+    <h3>Cognita Tests "LLMs-as-a-Jury" Method to Evaluate AI-Generated Radiology Reports Under FDA Contract</h3>
+    <div class="cat-pill">Tech Innovations</div>
+    <p><strong>Core Development:</strong> Cognita won an 18-month, $1.29M FDA research contract to test a new evaluation framework — having multiple large language models act as a "jury" to grade another AI's radiology report — across roughly 1 million patient exams spanning diverse populations, care settings, imaging equipment, and disease types.</p>
+    <p><strong>Context &amp; Impact:</strong> Generative-AI radiology tools now write full reports covering hundreds of possible findings, not just flag one abnormality, and the FDA's existing evaluation playbook was built for narrower, single-task tools. This project is effectively the FDA building new grading infrastructure for the wave of generative-AI devices it will soon have to review — which matters for how fast, and how safely, those tools reach the market.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The multi-model jury approach is meant to catch cases needing radiologist oversight and flag rare findings smaller studies would miss. This is regulatory science research, not a device clearance — but it will likely shape the evaluation standard future generative-AI radiology devices get held to.</p>
+  </div>
+
+  <div id="syensqo-bluebridge-sternal-spacer" class="dev-card cat-tech">
+    <h3>Syensqo Partners on BlueBridge Modular Sternal Spacer for Open-Chest Cardiac Recovery</h3>
+    <div class="cat-pill">Tech Innovations</div>
+    <p><strong>Core Development:</strong> Materials company Syensqo is supplying Ixef PARA, a glass-fiber-reinforced polyarylamide, for the BlueBridge Modular Sternal Spacer — a device that holds a patient's chest cavity open and stable when surgeons need to leave the chest open temporarily after complex cardiothoracic surgery, before final closure is safe.</p>
+    <p><strong>Context &amp; Impact:</strong> Leaving the chest open is sometimes medically necessary but logistically awkward — anything sitting in that space has to survive repeated imaging (X-ray, CT, MRI) without interfering with it, while still doing a real structural job. The device has already been used in over 100 patients, which suggests it's solving a real, recurring gap in post-op cardiac care rather than a hypothetical one.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The imaging-compatible, high-strength polymer is the enabling piece — it's what lets clinicians keep monitoring the patient without pulling the spacer out to do it. No FDA pathway details were reported alongside this partnership announcement.</p>
+  </div>
+
+  <div class="section-label">Clinical Advances</div>
+
+  <div id="corcym-memo-4d-curve" class="dev-card cat-clinical">
+    <h3>Corcym Delivers First-in-Human US Implant of Memo 4D Curve Mitral Repair Ring</h3>
+    <div class="cat-pill">Clinical Advances</div>
+    <p><strong>Core Development:</strong> Corcym, a cardiac device maker with a 20-year track record in mitral valve repair, completed the first U.S. implant of its Memo 4D Curve annuloplasty ring at UVA Health, performed by Dr. Michael Ibrahim, director of robotic cardiac surgery. The ring is an open, semi-rigid design laser-cut from nitinol, available in sizes 24mm-42mm, targeting mitral regurgitation caused by degenerative disease or a dilated annulus.</p>
+    <p><strong>Context &amp; Impact:</strong> Unlike closed, rigid rings, the open nitinol design is built to let the valve keep moving through its natural three-dimensional motion while still pulling the annulus back into a healthier shape — durability without sacrificing the valve's native mechanics. It's Corcym's second first-in-human milestone this month, following a tricuspid repair implant at Cleveland Clinic, signaling an aggressive push to expand its structural-heart footprint against much larger players like Edwards and Abbott.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The device received FDA clearance in June 2026; this implant is the clinical debut following that clearance, not a trial procedure. Nitinol's shape-memory property is what enables the "4D" claim — the ring flexes with the annulus through the cardiac cycle rather than locking it rigid.</p>
+  </div>
+
+  <div class="section-label">Regulatory Updates</div>
+
+  <div id="medicare-tavr-asymptomatic-coverage" class="dev-card cat-regulatory">
+    <h3>CMS Expands Medicare Coverage for TAVR to Asymptomatic Aortic Stenosis Patients</h3>
+    <div class="cat-pill">Regulatory Updates</div>
+    <p><strong>Core Development:</strong> CMS finalized a national coverage determination (decided Sept 10, widely reported the week of Sept 17) that lets Medicare reimburse transcatheter aortic valve replacement for patients with severe aortic stenosis who haven't yet developed symptoms — previously, TAVR was covered only once symptoms appeared. CMS dropped its evidence-development requirement for symptomatic patients but kept one for the newly covered asymptomatic group, to track real-world outcomes.</p>
+    <p><strong>Context &amp; Impact:</strong> This is a genuinely significant expansion of who qualifies for a procedure that already exceeds $7B globally. The American College of Cardiology framed it as weighing the case for earlier intervention (preventing irreversible heart damage) against real disagreement in the field over whether the risk-benefit case holds up before symptoms show. Edwards Lifesciences, which gets roughly 75% of its revenue from TAVR, stands to benefit substantially if adoption follows the coverage.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The policy keeps the multidisciplinary "heart team" evaluation requirement that has underpinned TAVR's track record, and raises real questions about screening infrastructure and equitable access to the imaging/workup needed to catch asymptomatic disease in the first place.</p>
+  </div>
+
+  <div id="adaptyx-cortisol-breakthrough-device" class="dev-card cat-regulatory">
+    <h3>Adaptyx Biosciences Wins FDA Breakthrough Device Designation for Continuous Cortisol Monitor</h3>
+    <div class="cat-pill">Regulatory Updates</div>
+    <p><strong>Core Development:</strong> Adaptyx Biosciences received FDA Breakthrough Device Designation and a spot in the FDA's Total Product Life Cycle Advisory Program (TAP) for its wearable cortisol sensor, which uses DNA-based molecular switches to continuously track cortisol in dermal interstitial fluid instead of relying on a single blood draw.</p>
+    <p><strong>Context &amp; Impact:</strong> Cortisol is a hormone that swings throughout the day, and clinicians have only ever had single-timepoint snapshots to characterize it — which makes adrenal disorders like Cushing syndrome and adrenal insufficiency chronically hard to diagnose and manage. Continuous data could meaningfully change how those conditions, plus resistant hypertension, are caught and monitored.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Breakthrough designation gets Adaptyx faster, more frequent FDA interactions; the TAP program adds a dedicated review team and early alignment with payers on reimbursement, so the company can build its pivotal trial and coverage strategy in parallel rather than sequentially.</p>
+  </div>
+
+  <div class="section-label">Market Developments</div>
+
+  <div id="medtronic-raises-cardiovascular-guidance" class="dev-card cat-market">
+    <h3>Medtronic Raises FY2027 Guidance Again as Cardiovascular Device Demand Surges</h3>
+    <div class="cat-pill">Market Developments</div>
+    <p><strong>Core Development:</strong> Medtronic raised its fiscal 2027 revenue guidance for the second time, to 7.25%-7.75% organic growth, after first-quarter organic revenue grew 13.7% to $9.76B — well ahead of analyst expectations. Cardiovascular was the standout segment, up 19.5%, with pulsed-field ablation technology growing 137% in the U.S. and the broader Cardiac Ablation Solutions segment up 80%.</p>
+    <p><strong>Context &amp; Impact:</strong> This is Wall Street's clearest signal yet that Medtronic's big bet on next-generation cardiac ablation and TAVR is paying off, and it lands the same week its LigaSure RAS Maryland instrument (cleared last week for the Hugo surgical robot) adds to that cardiovascular momentum. For a company competing against Abbott, Boston Scientific, and J&amp;J across nearly every device category, doubling down on cardiovascular strength is a clear statement about where it sees the growth.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> No new regulatory action here — this is an earnings/guidance story, but one that reflects just how fast pulsed-field ablation adoption has moved since its recent approvals.</p>
+  </div>
+
+  <div class="section-label">Emerging Trends</div>
+  <div class="trends">
+    <div class="trends-icon">💡</div>
+    <div>
+      <p>Cardiovascular care is where the money and regulatory attention are both concentrated right now: five of this week's eight stories touch cardiac devices in some way, from CMS widening who qualifies for TAVR, to Medtronic's guidance raise riding a pulsed-field-ablation boom, to Corcym's and Syensqo's new implants. When a subsector is this hot, expect competitors to accelerate their own pipelines and expect payers to keep scrutinizing whether the evidence is keeping pace with adoption.</p>
+      <p>Two smaller stories point to a quieter but real trend: designing connected, automated devices around the parts of care that are the most tedious and error-prone for patients and clinicians, rather than around what's technically flashiest. DePuy's automated fixator and Emanate's custom dental dressing both replace a manual, clinic-dependent "current experience" with something remote and personalized — a pattern worth watching as more device categories get the same treatment.</p>
+      <p>And regulators are visibly retooling for what's coming next rather than waiting to be caught flat-footed: the FDA's own contract to build generative-AI evaluation methods (Cognita), alongside a breakthrough pathway explicitly built to speed continuous-biosensing devices (Adaptyx), both signal an agency trying to build the infrastructure for next-generation device categories before it's overwhelmed by them.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Generated automatically. Last updated: Sept 24, 2026.
+  <div class="archive-links">Past editions: <a href="archive/2026-09-24.html">Sept 24, 2026</a> <a href="archive/2026-09-17.html">Sept 17, 2026</a> <a href="archive/2026-09-11_1.html">Sept 11, 2026</a> <a href="archive/2026-09-04.html">Sept 4, 2026</a> <a href="archive/2026-08-28.html">Aug 28, 2026</a> <a href="archive/2026-08-21.html">Aug 21, 2026</a> <a href="archive/2026-08-14.html">Aug 14, 2026</a> <a href="archive/2026-08-13.html">Aug 13, 2026</a> <a href="archive/2026-07-24.html">Jul 24, 2026</a> <a href="archive/2026-07-17.html">Jul 17, 2026</a> <a href="archive/2026-07-10.html">Jul 10, 2026</a> <a href="archive/2026-07-07.html">Jul 7, 2026</a></div>
+</footer>
+
+</body>
+</html>
