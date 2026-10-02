@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Device Intelligence — 2026-10-01</title>
+<style>
+  :root {
+    --teal: #0d9488; --teal-dark: #0f766e; --teal-faint: #f0fdfa;
+    --purple: #7c3aed; --purple-faint: #f5f3ff;
+    --blue: #2563eb; --blue-faint: #eff6ff;
+    --amber: #d97706; --amber-faint: #fffbeb;
+    --red: #dc2626; --red-faint: #fef2f2;
+    --slate: #0f172a; --slate-700: #334155; --slate-500: #64748b;
+    --slate-300: #cbd5e1; --slate-100: #f1f5f9; --slate-50: #f8fafc; --white: #fff;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--slate-100); color: var(--slate); margin:0; line-height: 1.65; font-size: 17px; }
+  header { background: var(--slate); color: #fff; padding: 16px 32px; display: flex; align-items: center; gap: 16px; }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+  .header-text .course { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-300); }
+  .header-text .suite { font-size: 1.22rem; font-weight: 800; color: #fff; }
+  .header-spacer { flex: 1; }
+  .header-badge { font-size: .8rem; font-weight: 700; padding: 4px 12px; background: var(--teal); color: #fff; border-radius: 999px; letter-spacing: .06em; text-transform: uppercase; }
+
+  .hero { background: linear-gradient(135deg, var(--slate) 0%, #1e3a5f 100%); color: #fff; padding: 56px 32px 48px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(13,148,136,.18) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(13,148,136,.12) 0%, transparent 60%); }
+  .hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
+  .hero-eyebrow { font-size: .82rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #99f6e4; margin-bottom: 14px; }
+  .hero h1 { font-size: 2.3rem; font-weight: 900; line-height: 1.15; margin: 0 0 16px; color: #fff; }
+  .hero p { font-size: 1.05rem; color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 28px; }
+  .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .hero-tag { font-size: .85rem; font-weight: 600; padding: 5px 14px; border-radius: 999px; letter-spacing: .02em; border: 1px solid rgba(255,255,255,.25); }
+
+  .main { max-width: 900px; margin: 0 auto; padding: 40px 24px 60px; }
+  .section-label { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-500); margin: 40px 0 16px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content:''; flex:1; height:1px; background: var(--slate-300); }
+  .section-label:first-of-type { margin-top: 0; }
+
+  .class-connect { background: linear-gradient(135deg, var(--slate) 0%, #0f3d38 100%); color:#fff; border-radius: 14px; padding: 28px 28px 24px; margin-bottom: 8px; }
+  .class-connect-eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#5eead4; margin-bottom:10px; }
+  .class-connect h2 { margin:0 0 10px; font-size:1.45rem; font-weight:800; color:#fff; }
+  .class-connect-blurb { font-size:1.02rem; color:rgba(255,255,255,.82); margin:0 0 18px; max-width:640px; }
+  .class-connect-item { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:10px; padding:14px 16px; margin-bottom:10px; }
+  .class-connect-item:last-child { margin-bottom:0; }
+  .class-connect-item p { margin:0; font-size:1rem; color:rgba(255,255,255,.9); }
+  .class-connect-item a { color:#5eead4; font-weight:700; text-decoration:none; }
+  .class-connect-item a:hover { text-decoration:underline; }
+  .class-connect-note { font-size:.85rem; color:rgba(255,255,255,.55); margin-top:14px; }
+
+  .glance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .glance-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 16px 18px; border-top: 3px solid var(--cat-color, var(--teal)); }
+  .glance-cat { font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--cat-color, var(--teal)); margin-bottom: 8px; }
+  .glance-card ul { margin: 0; padding-left: 18px; font-size: .97rem; color: var(--slate-700); }
+  .glance-card li { margin-bottom: 6px; }
+  .glance-card a { color: var(--slate-700); text-decoration: none; }
+  .glance-card a:hover { color: var(--cat-color, var(--teal)); text-decoration: underline; }
+
+  .dev-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; border-top: 3px solid var(--cat-color, var(--teal)); scroll-margin-top: 20px; }
+  .dev-card h3 { margin: 0 0 8px; font-size: 1.28rem; font-weight: 800; }
+  .cat-pill { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .03em; padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; background: var(--cat-faint, var(--teal-faint)); color: var(--cat-color, var(--teal)); }
+  .dev-card p { font-size: 1.02rem; color: var(--slate-700); margin: 0 0 10px; }
+  .dev-card p:last-child { margin-bottom: 0; }
+  .dev-card p strong { color: var(--slate); }
+  .class-connect-tag { display:inline-block; font-size:.76rem; font-weight:700; letter-spacing:.03em; padding:3px 10px; border-radius:999px; margin-left:8px; background:var(--teal-faint); color:var(--teal-dark); vertical-align:middle; }
+
+  .cat-newproducts { --cat-color: var(--teal); --cat-faint: var(--teal-faint); }
+  .cat-clinical     { --cat-color: var(--purple); --cat-faint: var(--purple-faint); }
+  .cat-tech         { --cat-color: var(--blue); --cat-faint: var(--blue-faint); }
+  .cat-regulatory   { --cat-color: var(--amber); --cat-faint: var(--amber-faint); }
+  .cat-market       { --cat-color: var(--red); --cat-faint: var(--red-faint); }
+
+  .trends { background: var(--white); border: 1px solid var(--slate-300); border-radius: 10px; padding: 22px 24px; display: flex; gap: 14px; }
+  .trends-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .trends p { font-size: 1.02rem; color: var(--slate-700); margin: 0 0 12px; }
+  .trends p:last-child { margin-bottom: 0; }
+
+  footer { text-align: center; padding: 24px; font-size: .9rem; color: var(--slate-500); border-top: 1px solid var(--slate-300); background: var(--white); margin-top: 20px; }
+  footer .archive-links a { color: var(--teal); text-decoration: none; margin: 0 4px; }
+  footer .archive-links a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) { .hero h1 { font-size: 1.7rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <svg viewBox="0 0 36 36" width="36" height="36" fill="none" aria-label="logo">
+      <rect width="36" height="36" rx="8" fill="#0d9488"/>
+      <path d="M5 18h5l3-7 5 14 4-10 3 3h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="header-text">
+      <div class="course">Weekly Briefing</div>
+      <div class="suite">Medical Device Intelligence</div>
+    </div>
+  </div>
+  <div class="header-spacer"></div>
+  <span class="header-badge">Week of Oct 1, 2026</span>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Medical Device & Health Tech</div>
+    <h1>This Week in Medical Devices</h1>
+    <p>The most significant device developments from the past 7 days — new approvals, clinical results, tech launches, regulatory moves, and market news, with the practical "why it matters" for each.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">3 New Products/Approvals</span>
+      <span class="hero-tag">1 Tech Innovation</span>
+      <span class="hero-tag">2 Regulatory Updates</span>
+      <span class="hero-tag">1 Market Development</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="class-connect">
+    <div class="class-connect-eyebrow">BE695 Class Connection · Sept 30, 2026</div>
+    <h2>Need Statements, Scoping</h2>
+    <p class="class-connect-blurb">This class taught the Observation→Problem→Need progression and the three-part need-statement formula (problem / population / measurable outcome), with emphasis on avoiding "embedded solutions" and on "scoping up/down" to adjust specificity.</p>
+    <div class="class-connect-item">
+      <p><a href="#dreamed-modi-insulin-dosing-clearance">FDA Clears DreaMed MODI, First Insulin-Dosing App for Type 2 Patients on Injections</a> — good example: the need statement here is scoped tightly to a specific population (type 2 diabetics managing injections, not pumps) and a measurable outcome (optimized dose recommendations from CGM data), rather than jumping straight to "build an insulin pump app."</p>
+    </div>
+    <div class="class-connect-item">
+      <p><a href="#ceribell-qeeg-aieeg-clearance">Ceribell Wins FDA Clearance for Quantitative EEG Trending and Amplitude-Integrated EEG Analysis</a> — good example: the underlying need likely started from direct observation that bedside ICU/ED staff can't reliably interpret raw EEG to catch seizures or delirium in real time — a need built on an observed gap in time-to-recognition, not an embedded solution.</p>
+    </div>
+    <div class="class-connect-item">
+      <p><strong>CMS Ends Automatic Medicare Pass-Through Payments for FDA Breakthrough Devices</strong> (CMS, finalized Aug. 2026, effective Oct. 2026) — cautionary example: the breakthrough pathway has let "FDA designated it breakthrough" stand in for a measurable outcome claim. CMS now requiring devices to demonstrate actual substantial clinical improvement is a real-world echo of the class's warning against statements that assume impact instead of stating a measurable one.</p>
+    </div>
+  </div>
+
+  <div class="section-label">This Week at a Glance</div>
+  <div class="glance-grid">
+    <div class="glance-card cat-newproducts">
+      <div class="glance-cat">New Products/Approvals</div>
+      <ul>
+        <li><a href="#ceribell-qeeg-aieeg-clearance">FDA clears Ceribell's quantitative/amplitude-integrated EEG trending for faster delirium and seizure spotting</a></li>
+        <li><a href="#dreamed-modi-insulin-dosing-clearance">FDA clears first automated insulin-dosing app for type 2 patients who inject (not pump)</a></li>
+        <li><a href="#med-el-tici-unico-invisible-cochlear-implant">MED-EL launches first cochlear implant with no visible external parts at all</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-tech">
+      <div class="glance-cat">Tech Innovations</div>
+      <ul>
+        <li><a href="#medtronic-affera-prism2-pulseselect-proxbox">Medtronic adds real-time tissue-proximity feedback to its PFA cardiac ablation system</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-regulatory">
+      <div class="glance-cat">Regulatory Updates</div>
+      <ul>
+        <li><a href="#cms-breakthrough-device-payment-change">Medicare will no longer rubber-stamp extra payment just because FDA called a device "breakthrough"</a></li>
+        <li><a href="#autonomix-fda-feedback-nerve-sensing-510k">FDA signals a faster 510(k) route for a catheter that senses nerve signals in real time</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-market">
+      <div class="glance-cat">Market Developments</div>
+      <ul>
+        <li><a href="#oxurion-eclevar-medtech-cro-acquisition">Belgian biotech pivots into medtech by acquiring a device-focused European CRO</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">New Products/Approvals</div>
+
+  <div id="ceribell-qeeg-aieeg-clearance" class="dev-card cat-newproducts">
+    <h3>Ceribell Receives FDA 510(k) Clearance for Quantitative EEG Trending and Amplitude-Integrated EEG Analysis</h3>
+    <div class="cat-pill">New Products/Approvals</div><span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> Ceribell received FDA 510(k) clearance for new software features on its point-of-care EEG platform: quantitative EEG (qEEG) trending and amplitude-integrated EEG (aEEG) analysis. These turn raw, hard-to-read EEG waveforms into simplified visual trends that non-neurologist clinicians — ICU nurses, ED physicians — can use to spot seizure activity or delirium risk without waiting for a neurologist to read strip-by-strip.</p>
+    <p><strong>Context &amp; Impact:</strong> Non-convulsive seizures and ICU delirium are common and easy to miss because interpreting raw EEG requires specialist training that most bedside staff don't have and most hospitals can't staff around the clock. A simplified, trended display is the kind of tool that can shift seizure/delirium detection from "wait for the neurologist" to "flag it at the bedside, right now" — a meaningful shift in how fast patients get treated, and a differentiator against conventional EEG carts that just output raw waveforms.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Cleared via FDA's standard 510(k) pathway, meaning it was found substantially equivalent to a predicate EEG monitoring device — these are software/algorithm additions to Ceribell's existing point-of-care EEG hardware, not a new physical device. The main challenge ahead is clinical adoption: getting bedside staff trained to trust and act on a trended display instead of waiting for formal neurology reads.</p>
+  </div>
+
+  <div id="dreamed-modi-insulin-dosing-clearance" class="dev-card cat-newproducts">
+    <h3>FDA Clears DreaMed MODI, First CGM-Driven Insulin Dose Optimization App for Type 2 Patients on Injection Therapy</h3>
+    <div class="cat-pill">New Products/Approvals</div><span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> DreaMed Diabetes received FDA clearance for MODI, described as the first CGM-driven insulin dose optimization tool aimed specifically at adults with type 2 diabetes managing their condition with injections rather than an insulin pump. The app uses continuous glucose monitor data to generate automated dose recommendations for basal and/or bolus injections.</p>
+    <p><strong>Context &amp; Impact:</strong> Automated insulin dosing has mostly been built for pump users (mostly type 1), leaving the much larger population of type 2 patients on multiple daily injections without an equivalent "smart" tool — they've had CGMs that show data, but no automated help turning that data into a dose decision. MODI targets that gap directly, which matters because poor dose titration is one of the biggest reasons injection therapy underperforms in type 2 management.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Cleared as software, functioning as a clinical decision-support/dose-recommendation tool layered on existing CGM data streams rather than a new physical device. Key regulatory and clinical questions going forward: how liability and physician sign-off work when an algorithm is recommending real insulin doses, and how payers decide to cover a dosing app versus a pump.</p>
+  </div>
+
+  <div id="med-el-tici-unico-invisible-cochlear-implant" class="dev-card cat-newproducts">
+    <h3>MED-EL Launches TICI UNICO, the First Totally Invisible, Fully Implantable Cochlear Implant</h3>
+    <div class="cat-pill">New Products/Approvals</div>
+    <p><strong>Core Development:</strong> MED-EL introduced TICI UNICO, a cochlear implant for severe-to-profound hearing loss in which every component — including the microphone — sits beneath the skin, with no external processor or visible hardware. It enables continuous 24/7 hearing while remaining completely concealed, which required developing new microphone technology that can pick up sound through intact skin.</p>
+    <p><strong>Context &amp; Impact:</strong> Every cochlear implant on the market today still relies on an external, visible processor worn behind the ear or on the scalp — a real barrier for patients (especially kids and teens) who don't want a visible marker of hearing loss, and a practical nuisance for anyone who swims, exercises, or just doesn't want external hardware to manage, charge, or lose. A genuinely invisible, fully implanted option is a first in the category and could reshape patient preference away from today's semi-implantable designs.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The device has CE Mark approval and is launching in European markets now; no FDA clearance has been announced. The core technical challenge MED-EL solved was transcutaneous sound pickup — sensing sound well enough through skin and tissue to match or approach the performance of an external microphone, which is the main open question clinicians will want data on as the device reaches wider use.</p>
+  </div>
+
+  <div class="section-label">Tech Innovations</div>
+
+  <div id="medtronic-affera-prism2-pulseselect-proxbox" class="dev-card cat-tech">
+    <h3>Medtronic Wins FDA Clearance and CE Mark for Affera Prism-2 Mapping Software and PulseSelect ProxBox Adapter</h3>
+    <div class="cat-pill">Tech Innovations</div>
+    <p><strong>Core Development:</strong> Medtronic received both FDA clearance and CE Mark for Affera Prism-2, an upgraded cardiac mapping software that builds detailed 3D maps of heart electrical activity during ablation procedures, adding features like Beat Matching and Pace Tagging. Separately, its PulseSelect ProxBox adapter — which adds real-time impedance-based feedback showing catheter proximity to target tissue before energy delivery — picked up CE Mark.</p>
+    <p><strong>Context &amp; Impact:</strong> In pulsed-field ablation (PFA) procedures for atrial fibrillation, knowing exactly how close your catheter is to the tissue you're about to zap matters for both effectiveness and safety, and until now physicians have had to rely largely on the 3D map and experience rather than a direct proximity readout. Real-time tissue-contact feedback is the kind of incremental-but-concrete improvement that can reduce variability between operators and potentially shorten procedures — directly relevant to Medtronic's competitive position against Boston Scientific and J&amp;J/Biosense Webster in the fast-growing PFA market.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Prism-2 uses magnetic and impedance-based tracking and supports low-fluoroscopy procedures; the ProxBox adapter layers onto Medtronic's existing PulseSelect PFA system via impedance sensing. Both are software/accessory additions to already-approved hardware platforms, which is why they moved through clearance relatively quickly — the open question is how much the proximity feedback changes actual procedure outcomes once it's used broadly, not just in controlled settings.</p>
+  </div>
+
+  <div class="section-label">Regulatory Updates</div>
+
+  <div id="cms-breakthrough-device-payment-change" class="dev-card cat-regulatory">
+    <h3>CMS Ends Automatic Medicare Pass-Through Payments for FDA Breakthrough-Designated Devices</h3>
+    <div class="cat-pill">Regulatory Updates</div><span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> Starting this month, devices carrying FDA's "breakthrough" designation no longer automatically qualify for Medicare's enhanced payment pathways — new technology add-on payments (NTAP) and transitional pass-through payments. CMS finalized the change in August 2026; going forward, breakthrough devices have to separately demonstrate "substantial clinical improvement over alternatives" to access the extra reimbursement, rather than leaning on the FDA designation itself as justification.</p>
+    <p><strong>Context &amp; Impact:</strong> Nearly 800 devices have received breakthrough status since the pathway's 2020 expansion, and plenty of companies have treated the designation as a two-for-one: faster FDA review plus an inside track to better Medicare payment. Decoupling those means a "breakthrough" device is no longer presumed reimbursement-friendly — companies will need real comparative clinical evidence lined up before launch, which raises the cost and timeline of commercialization for genuinely novel but thinly-studied devices (several companies reportedly rushed to lock in designations before the October cutoff).</p>
+    <p><strong>Technical &amp; Regulatory:</strong> This is a reimbursement-policy change, not a safety or clearance standard change — FDA's breakthrough pathway itself (faster, more interactive review) is untouched. The practical effect lands squarely on evidence generation: device makers now need to plan comparative-effectiveness or outcomes data as part of the launch strategy, not as a nice-to-have after the fact.</p>
+  </div>
+
+  <div id="autonomix-fda-feedback-nerve-sensing-510k" class="dev-card cat-regulatory">
+    <h3>Autonomix Medical Reports Positive FDA Feedback Supporting a 510(k) Pathway for Its Nerve-Sensing Catheter</h3>
+    <div class="cat-pill">Regulatory Updates</div>
+    <p><strong>Core Development:</strong> Autonomix Medical, a small-cap developer of a catheter-based nerve-sensing and mapping platform, reported that the FDA gave feedback supporting a 510(k) clearance pathway (rather than a longer, more burdensome premarket approval route) for its device, which detects faint electrical signals from nerves to help guide procedures like nerve ablation for chronic pain.</p>
+    <p><strong>Context &amp; Impact:</strong> For a small company, the difference between a 510(k) and a PMA pathway is often the difference between reaching the market in a reasonable timeframe on available funding and not reaching it at all — PMA trials are dramatically more expensive and slower. A clear signal toward 510(k) meaningfully de-risks Autonomix's path to a U.S.-marketed product and is the kind of regulatory milestone that can move a thinly-capitalized device company's timeline and fundraising prospects more than a clinical result would.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The underlying technology is a sensing platform that picks up low-amplitude nerve signals via catheter, intended to help clinicians localize and target nerves (e.g., for chronic pain ablation) with more precision than current blind or ultrasound-guided approaches. 510(k) clearance still requires showing substantial equivalence to a predicate device — the company will need to identify and compare against an appropriate predicate as it finalizes its submission.</p>
+  </div>
+
+  <div class="section-label">Market Developments</div>
+
+  <div id="oxurion-eclevar-medtech-cro-acquisition" class="dev-card cat-market">
+    <h3>Oxurion Enters Exclusive Talks to Acquire Eclevar, Building a MedTech-Focused CRO Platform</h3>
+    <div class="cat-pill">Market Developments</div>
+    <p><strong>Core Development:</strong> Oxurion NV (Euronext Brussels), a company better known for ophthalmology drug development, entered exclusive negotiations to acquire the business and assets of Eclevar, a French clinical research organization (CRO) that runs pre-market and post-market clinical studies, regulatory advisory, and European market-access support specifically for medical device companies across Europe, Japan, and China. Oxurion will hold 68% of the resulting MedTech platform; existing Eclevar stakeholders keep 32%, with the deal structured around a nominal €1 purchase price plus working-capital support and deferred payouts to minority holders.</p>
+    <p><strong>Context &amp; Impact:</strong> It's a notable pivot — a struggling drug-development company repositioning around medtech-specific clinical/regulatory services rather than its original pharma focus, betting that demand for specialized device CRO work (EU MDR compliance support in particular) is a steadier business than funding its own drug pipeline. For device makers, it's one more sign that EU MDR's heavier evidence requirements have created a real services market around compliance, not just a one-time compliance headache.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> The deal is structured as an asset acquisition rather than a full-company merger, with completion targeted for December 31, 2026 and pending the usual deal conditions. No device-specific regulatory approval is implicated here — the relevant regulatory backdrop is EU MDR itself, which is the reason this kind of specialized device-CRO service has become valuable enough to acquire.</p>
+  </div>
+
+  <div class="section-label">Emerging Trends</div>
+  <div class="trends">
+    <div class="trends-icon">💡</div>
+    <div>
+      <p>This was a fairly quiet week for brand-new clinical trial readouts on devices specifically, but a notably active one for the plumbing underneath the industry: payment policy, regulatory pathway signals, and clearances for software-layered features on existing platforms rather than entirely new hardware. Three of the week's items (Ceribell, DreaMed, Medtronic's Affera/PulseSelect updates) are software or algorithm additions riding on top of already-cleared hardware — a pattern that's become the default way device companies ship incremental value quickly, since software-only 510(k) submissions move faster than new-hardware ones.</p>
+      <p>The more consequential story of the week, though, is regulatory and financial rather than technical: CMS's decision to stop automatically extending enhanced Medicare payment to FDA breakthrough-designated devices. For several years, "breakthrough" has functioned as something close to a reimbursement fast-pass; that's now gone, and companies building novel but thinly-evidenced devices will need to budget for comparative-effectiveness data as part of launch planning, not as an afterthought. Expect this to disproportionately squeeze smaller, venture-backed device companies — which is also the backdrop for why a company like Autonomix getting a favorable 510(k) signal from FDA is material enough to be newsworthy on its own, and why specialized device-CRO services (the kind Oxurion just bought into) are becoming a growth business in their own right.</p>
+      <p>Taken together: the easy wins this week were all about proving a tightly-scoped, measurable need rather than chasing novelty for its own sake — MODI and the Ceribell features both succeed by solving one specific, previously-underserved gap rather than being broad platforms. That's a useful real-world echo of this week's "Need Statements, Scoping" lecture, and arguably the throughline for how smaller device companies should be reading this regulatory moment: scope tightly, show the measurable outcome, and don't lean on a designation to do a comparative-evidence job it no longer does.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Generated automatically. Last updated: Oct 1, 2026.
+  <div class="archive-links">Past editions: <a href="archive/2026-10-01.html">Oct 1, 2026</a> <a href="archive/2026-09-24.html">Sept 24, 2026</a> <a href="archive/2026-09-17.html">Sept 17, 2026</a> <a href="archive/2026-09-11_1.html">Sept 11, 2026</a> <a href="archive/2026-09-04.html">Sept 4, 2026</a> <a href="archive/2026-08-28.html">Aug 28, 2026</a> <a href="archive/2026-08-21.html">Aug 21, 2026</a> <a href="archive/2026-08-14.html">Aug 14, 2026</a> <a href="archive/2026-08-13.html">Aug 13, 2026</a> <a href="archive/2026-07-24.html">Jul 24, 2026</a> <a href="archive/2026-07-17.html">Jul 17, 2026</a> <a href="archive/2026-07-10.html">Jul 10, 2026</a> <a href="archive/2026-07-07.html">Jul 7, 2026</a></div>
+</footer>
+
+</body>
+</html>
