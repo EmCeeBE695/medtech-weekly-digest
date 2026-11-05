@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Device Intelligence — 2026-11-05</title>
+<style>
+  :root {
+    --teal: #0d9488; --teal-dark: #0f766e; --teal-faint: #f0fdfa;
+    --purple: #7c3aed; --purple-faint: #f5f3ff;
+    --blue: #2563eb; --blue-faint: #eff6ff;
+    --amber: #d97706; --amber-faint: #fffbeb;
+    --red: #dc2626; --red-faint: #fef2f2;
+    --slate: #0f172a; --slate-700: #334155; --slate-500: #64748b;
+    --slate-300: #cbd5e1; --slate-100: #f1f5f9; --slate-50: #f8fafc; --white: #fff;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--slate-100); color: var(--slate); margin:0; line-height: 1.65; font-size: 17px; }
+  header { background: var(--slate); color: #fff; padding: 16px 32px; display: flex; align-items: center; gap: 16px; }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+  .header-text .course { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-300); }
+  .header-text .suite { font-size: 1.22rem; font-weight: 800; color: #fff; }
+  .header-spacer { flex: 1; }
+  .header-badge { font-size: .8rem; font-weight: 700; padding: 4px 12px; background: var(--teal); color: #fff; border-radius: 999px; letter-spacing: .06em; text-transform: uppercase; }
+
+  .hero { background: linear-gradient(135deg, var(--slate) 0%, #1e3a5f 100%); color: #fff; padding: 56px 32px 48px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(13,148,136,.18) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(13,148,136,.12) 0%, transparent 60%); }
+  .hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
+  .hero-eyebrow { font-size: .82rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #99f6e4; margin-bottom: 14px; }
+  .hero h1 { font-size: 2.3rem; font-weight: 900; line-height: 1.15; margin: 0 0 16px; color: #fff; }
+  .hero p { font-size: 1.05rem; color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 28px; }
+  .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .hero-tag { font-size: .85rem; font-weight: 600; padding: 5px 14px; border-radius: 999px; letter-spacing: .02em; border: 1px solid rgba(255,255,255,.25); }
+
+  .main { max-width: 900px; margin: 0 auto; padding: 40px 24px 60px; }
+  .section-label { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-500); margin: 40px 0 16px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content:''; flex:1; height:1px; background: var(--slate-300); }
+  .section-label:first-of-type { margin-top: 0; }
+
+  .class-connect { background: linear-gradient(135deg, var(--slate) 0%, #0f3d38 100%); color:#fff; border-radius: 14px; padding: 28px 28px 24px; margin-bottom: 8px; }
+  .class-connect-eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#5eead4; margin-bottom:10px; }
+  .class-connect h2 { margin:0 0 10px; font-size:1.45rem; font-weight:800; color:#fff; }
+  .class-connect-blurb { font-size:1.02rem; color:rgba(255,255,255,.82); margin:0 0 18px; max-width:640px; }
+  .class-connect-item { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:10px; padding:14px 16px; margin-bottom:10px; }
+  .class-connect-item:last-child { margin-bottom:0; }
+  .class-connect-item p { margin:0; font-size:1rem; color:rgba(255,255,255,.9); }
+  .class-connect-item a { color:#5eead4; font-weight:700; text-decoration:none; }
+  .class-connect-item a:hover { text-decoration:underline; }
+  .class-connect-note { font-size:.85rem; color:rgba(255,255,255,.55); margin-top:14px; }
+
+  .glance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .glance-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 16px 18px; border-top: 3px solid var(--cat-color, var(--teal)); }
+  .glance-cat { font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--cat-color, var(--teal)); margin-bottom: 8px; }
+  .glance-card ul { margin: 0; padding-left: 18px; font-size: .97rem; color: var(--slate-700); }
+  .glance-card li { margin-bottom: 6px; }
+  .glance-card a { color: var(--slate-700); text-decoration: none; }
+  .glance-card a:hover { color: var(--cat-color, var(--teal)); text-decoration: underline; }
+
+  .dev-card { background: var(--white); border: 1px solid var(--slate-300); border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; border-top: 3px solid var(--cat-color, var(--teal)); scroll-margin-top: 20px; }
+  .dev-card h3 { margin: 0 0 8px; font-size: 1.28rem; font-weight: 800; }
+  .cat-pill { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .03em; padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; background: var(--cat-faint, var(--teal-faint)); color: var(--cat-color, var(--teal)); }
+  .dev-card p { font-size: 1.02rem; color: var(--slate-700); margin: 0 0 10px; }
+  .dev-card p:last-child { margin-bottom: 0; }
+  .dev-card p strong { color: var(--slate); }
+  .class-connect-tag { display:inline-block; font-size:.76rem; font-weight:700; letter-spacing:.03em; padding:3px 10px; border-radius:999px; margin-left:8px; background:var(--teal-faint); color:var(--teal-dark); vertical-align:middle; }
+
+  .cat-newproducts { --cat-color: var(--teal); --cat-faint: var(--teal-faint); }
+  .cat-clinical     { --cat-color: var(--purple); --cat-faint: var(--purple-faint); }
+  .cat-tech         { --cat-color: var(--blue); --cat-faint: var(--blue-faint); }
+  .cat-regulatory   { --cat-color: var(--amber); --cat-faint: var(--amber-faint); }
+  .cat-market       { --cat-color: var(--red); --cat-faint: var(--red-faint); }
+
+  .trends { background: var(--white); border: 1px solid var(--slate-300); border-radius: 10px; padding: 22px 24px; display: flex; gap: 14px; }
+  .trends-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .trends p { font-size: 1.02rem; color: var(--slate-700); margin: 0 0 12px; }
+  .trends p:last-child { margin-bottom: 0; }
+
+  footer { text-align: center; padding: 24px; font-size: .9rem; color: var(--slate-500); border-top: 1px solid var(--slate-300); background: var(--white); margin-top: 20px; }
+  footer .archive-links a { color: var(--teal); text-decoration: none; margin: 0 4px; }
+  footer .archive-links a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) { .hero h1 { font-size: 1.7rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <svg viewBox="0 0 36 36" width="36" height="36" fill="none" aria-label="logo">
+      <rect width="36" height="36" rx="8" fill="#0d9488"/>
+      <path d="M5 18h5l3-7 5 14 4-10 3 3h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="header-text">
+      <div class="course">Weekly Briefing</div>
+      <div class="suite">Medical Device Intelligence</div>
+    </div>
+  </div>
+  <div class="header-spacer"></div>
+  <span class="header-badge">Week of Nov 5, 2026</span>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Medical Device &amp; Health Tech</div>
+    <h1>This Week in Medical Devices</h1>
+    <p>The most significant device developments from the past 7 days — new approvals, clinical results, tech launches, regulatory moves, and market news, with the practical "why it matters" for each.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">1 New Product/Approval</span>
+      <span class="hero-tag">1 Clinical Advance</span>
+      <span class="hero-tag">1 Tech Innovation</span>
+      <span class="hero-tag">1 Regulatory Update</span>
+      <span class="hero-tag">3 Market Developments</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="class-connect">
+    <div class="class-connect-eyebrow">BE695 Class Connection · Monday, November 2, 2026</div>
+    <h2>Human Factors and Universal Design</h2>
+    <p class="class-connect-blurb">Last Monday's class covered what drives device usability, FDA human-factors guidance, use-related risk analysis, and designing for the full range of real-world users — including well-documented racial/skin-tone bias in device performance (the class's pulse oximeter example), plus insulin pens, infusion pumps, and wheelchairs as recurring use-related-risk case studies.</p>
+    <div class="class-connect-item">
+      <p><strong>Pulse oximeters and skin-tone bias</strong> (ongoing, not from this week) — the exact case study from lecture. Years after the FDA's own advisory panel agreed skin-pigment-driven inaccuracy poses a real clinical threat, manufacturers still aren't required to test across skin tones before clearance. A textbook <em>cautionary</em> example of a device validated on a narrow user population and then deployed universally.</p>
+    </div>
+    <div class="class-connect-item">
+      <p><a href="#medline-bed-fire-alert">FDA's early alert on Medline hospital/home-care beds</a> — a real-world-use-environment failure: electrical components overheating into fires, plus side rails that can trap or asphyxiate patients. Cautionary example of a device whose risk profile changes once it leaves the controlled hospital setting for home and long-term care use, which is exactly the kind of use-related risk analysis the lecture's framework is built to catch.</p>
+    </div>
+    <div class="class-connect-item">
+      <p><strong>Tandem Mobi insulin pump Class I recall</strong> (April 2026, not from this week) — a software malfunction could silently stop insulin delivery and disconnect the pump from its CGM and app without adequate notification to the user. Cautionary example matching the lecture's infusion-pump use-related-risk category almost exactly: notification failure, not user error, is the design flaw.</p>
+    </div>
+    <div class="class-connect-note">No new lecture this week (Nov 4 was Top 3 Problems Presentations) — still building on last week's Human Factors topic.</div>
+  </div>
+
+  <div class="section-label">This Week at a Glance</div>
+  <div class="glance-grid">
+    <div class="glance-card cat-newproducts">
+      <div class="glance-cat">New Products/Approvals</div>
+      <ul>
+        <li><a href="#abbott-amplatzer-paraclose-pvl">Abbott's new device seals leaks around repaired heart valves</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-tech">
+      <div class="glance-cat">Tech Innovations</div>
+      <ul>
+        <li><a href="#stryker-cmr-surgical-investment">Stryker bets $400M on soft-tissue surgical robotics</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-clinical">
+      <div class="glance-cat">Clinical Advances</div>
+      <ul>
+        <li><a href="#abbott-cephea-crown-mv-trial">Abbott starts pivotal trial for a new mitral valve replacement</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-regulatory">
+      <div class="glance-cat">Regulatory Updates</div>
+      <ul>
+        <li><a href="#medline-bed-fire-alert">FDA warns on Medline beds after fires, 2 deaths</a></li>
+      </ul>
+    </div>
+    <div class="glance-card cat-market">
+      <div class="glance-cat">Market Developments</div>
+      <ul>
+        <li><a href="#cooper-companies-ceo-exit">Activist pressure ousts Cooper Companies' CEO</a></li>
+        <li><a href="#stryker-2026-guidance-cut">Stryker trims 2026 outlook as ortho demand softens</a></li>
+        <li><a href="#smith-nephew-jj-deal-collapse">Smith+Nephew's outlook drops as J&amp;J merger talks collapse</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">New Products/Approvals</div>
+
+  <div id="abbott-amplatzer-paraclose-pvl" class="dev-card cat-newproducts">
+    <h3>Abbott Wins First US Approval for a Device That Seals Leaks Around Repaired Heart Valves</h3>
+    <div class="cat-pill">New Products/Approvals</div>
+    <p><strong>Core Development:</strong> The FDA approved Abbott's Amplatzer Paraclose PVL Occluder on October 28. It's a catheter-delivered device that plugs paravalvular leaks — gaps that form around a surgically replaced heart valve and let blood leak backward. It's the first device approved in the US specifically for this job, backed by the 200-patient PARADIGM trial. It's already sold in Europe (since 2020) as the Amplatzer Valvular Plug III.</p>
+    <p><strong>Context &amp; Impact:</strong> Paravalvular leaks show up in roughly 7–17% of mitral and 5–10% of aortic valve replacements, and can cause shortness of breath, swelling, and red-blood-cell damage. Until now, fixing one usually meant another open-heart operation. This device threads in through a vein or artery in the leg instead — a meaningfully lower-risk option for a problem that previously had no good minimally invasive fix.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Approved via the standard PMA pathway on US clinical trial data, not a 510(k) — reflecting that this is a genuinely novel indication rather than an incremental update to an existing device category.</p>
+  </div>
+
+  <div class="section-label">Tech Innovations</div>
+
+  <div id="stryker-cmr-surgical-investment" class="dev-card cat-tech">
+    <h3>Stryker Invests $400M in Soft-Tissue Robot Maker CMR Surgical, Becomes Its Exclusive US Distributor</h3>
+    <div class="cat-pill">Tech Innovations</div>
+    <p><strong>Core Development:</strong> Alongside its Q3 earnings call (Oct 30), Stryker announced a $400 million investment in CMR Surgical, a UK-based maker of soft-tissue surgical robots, and will be its exclusive US distributor. CEO Kevin Lobo said Stryker hopes to eventually acquire CMR outright, though he gave no timeline.</p>
+    <p><strong>Context &amp; Impact:</strong> Stryker's own robotics strength (Mako) is in orthopedics — bone, not soft tissue. This buys Stryker a foothold in the soft-tissue robotic surgery market that Intuitive Surgical's da Vinci has long dominated, at a moment when Stryker's core ortho business is slowing (see below). It's a bet that robotics, not implant volume, is where the next growth comes from.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> CMR's Versius platform is already CE-marked and used outside the US; US commercialization through Stryker as distributor will still depend on CMR's own FDA clearance pathway for the relevant procedures.</p>
+  </div>
+
+  <div class="section-label">Clinical Advances</div>
+
+  <div id="abbott-cephea-crown-mv-trial" class="dev-card cat-clinical">
+    <h3>Abbott Begins Pivotal CROWN-MV Trial for Its Cephea Mitral Valve Replacement System</h3>
+    <div class="cat-pill">Clinical Advances</div>
+    <p><strong>Core Development:</strong> Abbott initiated its CROWN-MV pivotal trial (announced Oct 29) for the Cephea transcatheter mitral valve replacement system, aimed at patients with mitral valve disease who aren't good candidates for open-heart surgery.</p>
+    <p><strong>Context &amp; Impact:</strong> Transcatheter mitral valve replacement has lagged behind the aortic side (where TAVR is now routine) because the mitral valve's anatomy is harder to work with. A successful pivotal trial here would open a minimally invasive option to a population of older, sicker patients currently stuck with medical management or risky surgery.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> This is the trial that will generate the safety/efficacy data for an eventual PMA submission — still likely several years from a US approval decision, but it's the first concrete step.</p>
+  </div>
+
+  <div class="section-label">Regulatory Updates</div>
+
+  <div id="medline-bed-fire-alert" class="dev-card cat-regulatory">
+    <h3>FDA Issues Early Alert on Medline Beds Linked to Fires, 2 Deaths, 16 Injuries</h3>
+    <div class="cat-pill">Regulatory Updates</div>
+    <span class="class-connect-tag">Class connection</span>
+    <p><strong>Core Development:</strong> On Oct 29, the FDA issued an early alert on Medline-brand beds used in homes and long-term care, plus accessories like mattresses and side rails. Electrical components can overheat, melt their casing, and start fires; the rails can also trap or asphyxiate patients. Medline has pulled the beds from sale and said it's exiting the bed market entirely. As of Oct 20, the company was aware of at least two deaths and 16 injuries.</p>
+    <p><strong>Context &amp; Impact:</strong> This is a device that passed muster for hospital use but is failing in the messier, less-supervised environment of home and long-term care — plugged in longer, moved around more, used by less-trained caregivers. It's a clean illustration of why use-related risk analysis has to account for the actual environment of use, not just the intended one.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Current owners can keep using the beds but are told to plug them in only to reposition a patient and avoid extension cords; repairable units get fixed, others get a refund or replacement. Adverse events get reported through FDA MedWatch.</p>
+  </div>
+
+  <div class="section-label">Market Developments</div>
+
+  <div id="cooper-companies-ceo-exit" class="dev-card cat-market">
+    <h3>Cooper Companies CEO Steps Down After Activist Investor Pressure</h3>
+    <div class="cat-pill">Market Developments</div>
+    <p><strong>Core Development:</strong> Albert White stepped down as president and CEO of Cooper Companies effective immediately (Oct 29), after activist investor Jana Partners pushed for a leadership change and for Cooper to consider selling its fertility and medical device assets. Independent director Walter Rosebrough Jr. (former Steris CEO) is now interim executive chair running day-to-day operations while a permanent search proceeds.</p>
+    <p><strong>Context &amp; Impact:</strong> Cooper (known mainly for CooperVision contact lenses, but with meaningful fertility and medical device units) had already cut guidance in September. This is the latest in a wave of activist-driven C-suite shakeups across medtech this year — a sign that soft performance is translating directly into board-level consequences, not just stock-price pain.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> Not a regulatory story — pure corporate governance. Worth watching for whether a new CEO pursues the asset sales Jana wants.</p>
+  </div>
+
+  <div id="stryker-2026-guidance-cut" class="dev-card cat-market">
+    <h3>Stryker Cuts 2026 Guidance as Hip and Knee Procedure Volumes Slow</h3>
+    <div class="cat-pill">Market Developments</div>
+    <p><strong>Core Development:</strong> Stryker (Oct 30) cut its 2026 sales growth forecast to 6.5–7.0%, down from 8.3–9.3%, after Q3 hip sales fell 1% and knee sales grew just 1.1% — both below expectations. CEO Kevin Lobo attributed the slowdown to economic pressure on patients (higher premiums/deductibles, pre-authorization denials causing delayed surgery), not competitive losses. Lobo steps down at year-end; COO Spencer Stiles takes over in January.</p>
+    <p><strong>Context &amp; Impact:</strong> This matters beyond Stryker: if patients are delaying elective joint replacement because of insurance costs, that's a demand-side headwind hitting the whole orthopedic sector, not a company-specific problem. Worth watching whether Zimmer Biomet and Smith+Nephew tell the same story (see next item).</p>
+    <p><strong>Technical &amp; Regulatory:</strong> None directly — a financial/demand story, though it's the backdrop against which Stryker made its CMR Surgical robotics bet (above).</p>
+  </div>
+
+  <div id="smith-nephew-jj-deal-collapse" class="dev-card cat-market">
+    <h3>Smith+Nephew Cuts Outlook After Failed Orthopaedics Merger Talks With J&amp;J</h3>
+    <div class="cat-pill">Market Developments</div>
+    <p><strong>Core Development:</strong> Smith+Nephew confirmed (Nov 4) that its merger talks with J&amp;J's orthopaedics (DePuy) unit — reportedly worth around $34B — fell apart over a dispute about who'd run the combined company. The same day, it cut its outlook, citing continued declines in US knee and hip sales.</p>
+    <p><strong>Context &amp; Impact:</strong> Combined with Stryker's and Cooper's news this week, it's a rough week for orthopedics broadly: soft US demand, a failed mega-merger, and activist pressure all landing within days of each other. A deal of this size falling apart over a CEO-seat dispute, rather than price or strategy, says something about how fragile even "right on paper" medtech consolidation can be.</p>
+    <p><strong>Technical &amp; Regulatory:</strong> No antitrust review ever got triggered since the deal died in talks — a reminder that plenty of would-be megamergers never make it that far.</p>
+  </div>
+
+  <div class="section-label">Emerging Trends</div>
+  <div class="trends">
+    <div class="trends-icon">💡</div>
+    <div>
+      <p>This was a market-news-heavy week rather than a product-innovation-heavy one, and the dominant thread is orthopedics under pressure from the demand side. Stryker and Smith+Nephew both independently cited softer US hip and knee procedure volumes tied to patients facing higher insurance costs and pre-authorization friction — a macro/affordability story, not a competitive one, and one worth watching for whether Zimmer Biomet's recent, more upbeat guidance is an exception or just a lag.</p>
+      <p>At the same time, capital kept moving toward differentiated technology even as core businesses softened: Stryker's $400M bet on soft-tissue surgical robotics (a market it doesn't currently compete in) came in the same breath as its guidance cut, and Abbott kept expanding its structural heart portfolio on both the approval side (paravalvular leak closure) and the trial side (mitral valve replacement). The pattern is consistent with what's been building all year — commodity implant and device lines are getting squeezed on price and demand, while novel structural-heart and robotics bets keep attracting investment regardless.</p>
+      <p>The Medline bed alert is a smaller story but a telling one for anyone thinking about device design: a product that was presumably fine under hospital supervision is failing once it's deployed into home and long-term care, where use patterns, caregiver training, and electrical setups are far less controlled. Expect more scrutiny of devices that cross that same hospital-to-home boundary as care continues shifting out of hospitals.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Generated automatically. Last updated: Nov 5, 2026.
+  <div class="archive-links">Past editions: <a href="archive/2026-11-05.html">Nov 5, 2026</a> <a href="archive/2026-10-29.html">Oct 29, 2026</a> <a href="archive/2026-10-22.html">Oct 22, 2026</a> <a href="archive/2026-10-15.html">Oct 15, 2026</a> <a href="archive/2026-10-08.html">Oct 8, 2026</a> <a href="archive/2026-10-01.html">Oct 1, 2026</a> <a href="archive/2026-09-24.html">Sep 24, 2026</a> <a href="archive/2026-09-17.html">Sep 17, 2026</a> <a href="archive/2026-09-11_1.html">Sep 11, 2026</a> <a href="archive/2026-09-04.html">Sep 4, 2026</a> <a href="archive/2026-08-28.html">Aug 28, 2026</a> <a href="archive/2026-08-21.html">Aug 21, 2026</a> <a href="archive/2026-08-14.html">Aug 14, 2026</a> <a href="archive/2026-08-13.html">Aug 13, 2026</a> <a href="archive/2026-07-24.html">Jul 24, 2026</a> <a href="archive/2026-07-17.html">Jul 17, 2026</a> <a href="archive/2026-07-10.html">Jul 10, 2026</a> <a href="archive/2026-07-07.html">Jul 7, 2026</a></div>
+</footer>
+
+</body>
+</html>
